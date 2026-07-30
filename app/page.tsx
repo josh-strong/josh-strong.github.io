@@ -124,7 +124,7 @@ export default function Home() {
               <FiMail aria-hidden="true" data-icon="mail" size={15} />
               <span>Email</span>
             </a>
-            <a href="https://scholar.google.co.uk/scholar?hl=en&as_sauthors=%22Joshua+Strong%22">
+            <a href="https://scholar.google.co.uk/citations?user=vFoP8mIAAAAJ&hl=en">
               <SiGooglescholar
                 aria-hidden="true"
                 data-icon="google-scholar"
@@ -136,7 +136,7 @@ export default function Home() {
               <FaGithub aria-hidden="true" data-icon="github" size={15} />
               <span>GitHub</span>
             </a>
-            <a href="https://www.linkedin.com/in/josh-strong">
+            <a href="https://www.linkedin.com/in/josh-strong/">
               <FaLinkedinIn
                 aria-hidden="true"
                 data-icon="linkedin"

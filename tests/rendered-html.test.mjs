@@ -42,7 +42,12 @@ test("server-renders Joshua Strong's academic website", async () => {
   assert.match(html, /data-icon="google-scholar"/);
   assert.match(html, /data-icon="github"/);
   assert.match(html, /data-icon="linkedin"/);
-  assert.match(html, /scholar\.google\.co\.uk\/scholar/);
+  assert.match(
+    html,
+    /scholar\.google\.co\.uk\/citations\?user=vFoP8mIAAAAJ&amp;hl=en/,
+  );
+  assert.match(html, /https:\/\/github\.com\/josh-strong/);
+  assert.match(html, /https:\/\/www\.linkedin\.com\/in\/josh-strong\//);
   assert.match(html, /content="http:\/\/localhost(?::3000)?\/og-dark\.png"/);
   assert.doesNotMatch(html, /codex-preview|Building your site/);
 });
