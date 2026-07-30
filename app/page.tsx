@@ -92,9 +92,9 @@ export default function Home() {
             <figure className="profile-photo">
               <img
                 src="/joshua-strong.png"
-                alt="Joshua Strong presenting his research"
-                width="192"
-                height="256"
+                alt="Portrait of Joshua Strong"
+                width="800"
+                height="1000"
               />
             </figure>
             <p>
