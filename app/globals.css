@@ -275,6 +275,76 @@ h1 {
   color: var(--ink);
 }
 
+.cv-group {
+  margin-top: 64px;
+}
+
+.cv-group-title {
+  margin: 0 0 14px;
+  color: var(--muted);
+  font-size: 0.68rem;
+  font-weight: 650;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.cv-entry {
+  display: grid;
+  grid-template-columns: 110px minmax(0, 1fr);
+  gap: 26px;
+  padding: 30px 0 34px;
+  border-top: 1px solid var(--line);
+}
+
+.cv-dates {
+  padding-top: 4px;
+  color: var(--muted);
+  font-family: "SFMono-Regular", Consolas, monospace;
+  font-size: 0.7rem;
+}
+
+.cv-entry h3 {
+  margin: 0;
+  font-size: clamp(1.18rem, 1.8vw, 1.5rem);
+  font-weight: 520;
+  letter-spacing: -0.025em;
+  line-height: 1.25;
+}
+
+.cv-entry p {
+  max-width: 650px;
+  margin: 12px 0 0;
+  color: var(--muted);
+}
+
+.cv-entry .cv-institution {
+  margin-top: 5px;
+  color: var(--ink);
+  font-size: 0.82rem;
+}
+
+.cv-group.compact {
+  padding-bottom: 8px;
+}
+
+.service-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 40px;
+  padding-top: 28px;
+  border-top: 1px solid var(--line);
+}
+
+.service-grid span {
+  font-size: 0.84rem;
+  font-weight: 600;
+}
+
+.service-grid p {
+  margin: 8px 0 0;
+  color: var(--muted);
+}
+
 .contact {
   margin-top: 20px;
   padding: 126px clamp(24px, 7vw, 92px);
@@ -371,9 +441,14 @@ footer a {
   }
 
   .research-item,
-  .publication {
+  .publication,
+  .cv-entry {
     grid-template-columns: 42px minmax(0, 1fr);
     gap: 14px;
+  }
+
+  .service-grid {
+    grid-template-columns: 1fr;
   }
 
   .contact {

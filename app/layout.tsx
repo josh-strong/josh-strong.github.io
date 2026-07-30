@@ -18,7 +18,7 @@ export async function generateMetadata(): Promise<Metadata> {
     metadataBase: baseUrl,
     title: "Joshua Strong | Trustworthy AI for Healthcare",
     description:
-      "Joshua Strong researches learning to defer, human-AI collaboration, and expert-facing evaluation for safe clinical decision-making.",
+      "Joshua Strong is an Oxford DPhil student researching learning to defer and human-AI collaboration for safe clinical decision-making.",
     openGraph: {
       title: "Joshua Strong",
       description: "Human-AI collaboration for safer clinical AI",

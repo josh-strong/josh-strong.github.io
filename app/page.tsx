@@ -4,21 +4,8 @@ const publications = [
     title: "Identity-Free Deferral for Unseen Experts",
     authors:
       "Joshua Strong, Pramit Saha, Yasin Ibrahim, Cheng Ouyang, and J. Alison Noble",
-    venue: "International Conference on Learning Representations (ICLR), poster",
-  },
-  {
-    year: "2026",
-    title: "Human-AI Collaboration in Healthcare: A Scoping Review",
-    authors:
-      "Joshua Strong, Harry Rogers, Emma Sun, Anna Louise Todsen, Jody Ede, Cherry Lumley, Nick Yeung, Helen Higham, and J. Alison Noble",
-    venue: "npj Digital Medicine, accepted",
-  },
-  {
-    year: "2026",
-    title: "Coherent Hierarchical Multi-Label Deferral for Medical Imaging",
-    authors:
-      "Joshua Strong, Pramit Saha, Emma Sun, Helen Higham, and J. Alison Noble",
-    venue: "Manuscript under review",
+    venue: "International Conference on Learning Representations (ICLR)",
+    href: "https://openreview.net/forum?id=4YG9ufFg58",
   },
   {
     year: "2025",
@@ -33,18 +20,41 @@ const publications = [
 const researchAreas = [
   {
     number: "01",
-    title: "Dynamic deferral",
-    text: "Clinical AI should do more than answer or abstain. I study systems that decide when to act, ask for missing information, retrieve evidence, or defer to the right clinician.",
+    title: "Human-AI collaboration",
+    text: "My DPhil research studies how people and AI systems can work together safely and effectively in healthcare, with responsibility allocated to the right decision-maker.",
   },
   {
     number: "02",
-    title: "Human-AI evaluation",
-    text: "I develop benchmarks for multi-step clinical reasoning that measure uncertainty, escalation, handoff quality, calibrated reliance, and the performance of the whole team.",
+    title: "Learning to defer",
+    text: "I develop machine learning systems that recognise when human expertise is needed, including guided deferral with language models and deferral to previously unseen experts.",
   },
   {
     number: "03",
-    title: "Learning from handoffs",
-    text: "Deferrals, corrections, and expert disagreements reveal what a model does not know. I use these signals to improve clinical models under noise, sparsity, and domain shift.",
+    title: "Applied clinical data science",
+    text: "My work is grounded in practical healthcare settings, including experience building and deploying national-scale forecasting systems at NHS England.",
+  },
+];
+
+const education = [
+  {
+    dates: "2022-present",
+    institution: "University of Oxford",
+    qualification: "DPhil in Engineering Science",
+    detail:
+      "Thesis: Human AI Collaboration in Healthcare. Supervised by Professor Alison Noble CBE FRS FREng FIET and Professor Helen Higham. Fully funded EPSRC Studentship.",
+  },
+  {
+    dates: "2019-2020",
+    institution: "University College London",
+    qualification: "MSc in Data Science, Distinction",
+    detail:
+      "Thesis: Model-Agnostic Meta-Learning for Few-Shot Deep Learning.",
+  },
+  {
+    dates: "2015-2018",
+    institution: "University of York",
+    qualification: "BSc (Hons) in Mathematics, First Class",
+    detail: "Ranked second in cohort.",
   },
 ];
 
@@ -59,6 +69,7 @@ export default function Home() {
           <a href="#about">About</a>
           <a href="#research">Research</a>
           <a href="#publications">Publications</a>
+          <a href="#cv">CV</a>
           <a href="mailto:joshua.strong@eng.ox.ac.uk">Contact</a>
         </nav>
       </header>
@@ -78,13 +89,15 @@ export default function Home() {
             </p>
             <div className="hero-meta" aria-label="Location and role">
               <span>Oxford, UK</span>
-              <span>DPhil researcher</span>
+              <span>DPhil student</span>
             </div>
             <div className="hero-links">
               <a href="mailto:joshua.strong@eng.ox.ac.uk">Email</a>
-              <a href="/joshua-strong-research-statement.pdf">
-                Research statement <span aria-hidden="true">↗</span>
+              <a href="/joshua-strong-cv.pdf">
+                CV <span aria-hidden="true">↗</span>
               </a>
+              <a href="https://github.com/josh-strong">GitHub</a>
+              <a href="https://www.linkedin.com/in/josh-strong">LinkedIn</a>
             </div>
           </div>
 
@@ -110,16 +123,14 @@ export default function Home() {
               My work asks how clinical AI systems should collaborate with
               human experts when decisions are uncertain, information is
               incomplete, and responsibility cannot be handed over casually.
-              The goal is practical AI that handles routine cases, communicates
-              uncertainty, escalates urgent situations, and supports coherent
-              handoffs to clinicians.
+              My DPhil in Engineering Science at the University of Oxford
+              focuses on human-AI collaboration in healthcare.
             </p>
             <p>
-              Alongside methodological work in machine learning, I study how
-              these systems affect reliance, workload, accountability, and
-              clinical workflow. I also bring experience from NHS data science,
-              working with real healthcare datasets and clinical and
-              operational stakeholders.
+              Before starting my DPhil, I was a Data Scientist at NHS England,
+              where I built a Bayesian hierarchical early warning system for
+              national COVID metrics and took machine learning products from
+              large-scale data preparation through production deployment.
             </p>
           </div>
         </section>
@@ -147,11 +158,8 @@ export default function Home() {
           <div className="section-content">
             <div className="section-heading-row">
               <h2>Selected work</h2>
-              <a
-                className="text-link"
-                href="/joshua-strong-research-statement.pdf"
-              >
-                Full research statement <span aria-hidden="true">↗</span>
+              <a className="text-link" href="/joshua-strong-cv.pdf">
+                Download CV <span aria-hidden="true">↗</span>
               </a>
             </div>
             <div className="publication-list">
@@ -171,6 +179,66 @@ export default function Home() {
                   </div>
                 </article>
               ))}
+            </div>
+          </div>
+        </section>
+
+        <section id="cv" className="section cv">
+          <div className="section-label">CV</div>
+          <div className="section-content">
+            <div className="section-heading-row">
+              <h2>Experience &amp; education</h2>
+              <a className="text-link" href="/joshua-strong-cv.pdf">
+                PDF version <span aria-hidden="true">↗</span>
+              </a>
+            </div>
+
+            <div className="cv-group">
+              <h3 className="cv-group-title">Experience</h3>
+              <article className="cv-entry">
+                <div className="cv-dates">2020-2022</div>
+                <div>
+                  <h3>Data Scientist</h3>
+                  <p className="cv-institution">NHS England</p>
+                  <p>
+                    Built a Bayesian hierarchical early warning system for
+                    national COVID forecasting, led machine learning products
+                    from data preparation to deployment, and mentored junior
+                    analysts and MSc researchers.
+                  </p>
+                </div>
+              </article>
+            </div>
+
+            <div className="cv-group">
+              <h3 className="cv-group-title">Education</h3>
+              {education.map((item) => (
+                <article className="cv-entry" key={item.institution}>
+                  <div className="cv-dates">{item.dates}</div>
+                  <div>
+                    <h3>{item.qualification}</h3>
+                    <p className="cv-institution">{item.institution}</p>
+                    <p>{item.detail}</p>
+                  </div>
+                </article>
+              ))}
+            </div>
+
+            <div className="cv-group compact">
+              <h3 className="cv-group-title">Teaching &amp; service</h3>
+              <div className="service-grid">
+                <div>
+                  <span>Teaching</span>
+                  <p>
+                    Graduate Teaching Assistant for group-based AI projects on
+                    doctoral training programmes and international visits.
+                  </p>
+                </div>
+                <div>
+                  <span>Reviewing</span>
+                  <p>NeurIPS 2024, ICML 2024, and ICLR 2025.</p>
+                </div>
+              </div>
             </div>
           </div>
         </section>
