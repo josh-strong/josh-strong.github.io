@@ -1,3 +1,6 @@
+import { FaGithub, FaLinkedinIn } from "react-icons/fa6";
+import { FiFileText, FiMail } from "react-icons/fi";
+
 const publications = [
   {
     year: "2026",
@@ -116,10 +119,26 @@ export default function Home() {
             </p>
           </div>
           <div className="profile-links" aria-label="External links">
-            <a href="mailto:joshua.strong@eng.ox.ac.uk">Email</a>
-            <a href="/joshua-strong-cv.pdf">CV</a>
-            <a href="https://github.com/josh-strong">GitHub</a>
-            <a href="https://www.linkedin.com/in/josh-strong">LinkedIn</a>
+            <a href="mailto:joshua.strong@eng.ox.ac.uk">
+              <FiMail aria-hidden="true" data-icon="mail" size={15} />
+              <span>Email</span>
+            </a>
+            <a href="/joshua-strong-cv.pdf">
+              <FiFileText aria-hidden="true" data-icon="cv" size={15} />
+              <span>CV</span>
+            </a>
+            <a href="https://github.com/josh-strong">
+              <FaGithub aria-hidden="true" data-icon="github" size={15} />
+              <span>GitHub</span>
+            </a>
+            <a href="https://www.linkedin.com/in/josh-strong">
+              <FaLinkedinIn
+                aria-hidden="true"
+                data-icon="linkedin"
+                size={15}
+              />
+              <span>LinkedIn</span>
+            </a>
           </div>
         </section>
 
@@ -155,7 +174,8 @@ export default function Home() {
           <div className="heading-row">
             <h2>CV</h2>
             <a className="pdf-link" href="/joshua-strong-cv.pdf">
-              Download PDF
+              <FiFileText aria-hidden="true" data-icon="cv" size={15} />
+              <span>Download PDF</span>
             </a>
           </div>
 

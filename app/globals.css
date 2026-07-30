@@ -156,8 +156,22 @@ p {
 
 .profile-links a,
 .pdf-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
   color: var(--muted);
   font-size: 14px;
+  text-decoration: none;
+}
+
+.profile-links a:hover,
+.pdf-link:hover {
+  color: var(--text);
+}
+
+.profile-links svg,
+.pdf-link svg {
+  flex: 0 0 auto;
 }
 
 .content-section {
