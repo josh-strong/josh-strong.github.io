@@ -154,8 +154,7 @@ p {
   margin-top: 22px;
 }
 
-.profile-links a,
-.pdf-link {
+.profile-links a {
   display: inline-flex;
   align-items: center;
   gap: 6px;
@@ -164,13 +163,11 @@ p {
   text-decoration: none;
 }
 
-.profile-links a:hover,
-.pdf-link:hover {
+.profile-links a:hover {
   color: var(--text);
 }
 
-.profile-links svg,
-.pdf-link svg {
+.profile-links svg {
   flex: 0 0 auto;
 }
 
@@ -216,13 +213,6 @@ p {
 .publication .venue {
   color: var(--faint);
   font-style: italic;
-}
-
-.heading-row {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 24px;
 }
 
 .cv-group {

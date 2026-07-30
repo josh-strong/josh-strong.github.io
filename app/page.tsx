@@ -1,5 +1,5 @@
 import { FaGithub, FaLinkedinIn } from "react-icons/fa6";
-import { FiFileText, FiMail } from "react-icons/fi";
+import { FiMail } from "react-icons/fi";
 
 const publications = [
   {
@@ -123,10 +123,6 @@ export default function Home() {
               <FiMail aria-hidden="true" data-icon="mail" size={15} />
               <span>Email</span>
             </a>
-            <a href="/joshua-strong-cv.pdf">
-              <FiFileText aria-hidden="true" data-icon="cv" size={15} />
-              <span>CV</span>
-            </a>
             <a href="https://github.com/josh-strong">
               <FaGithub aria-hidden="true" data-icon="github" size={15} />
               <span>GitHub</span>
@@ -171,13 +167,7 @@ export default function Home() {
         </section>
 
         <section id="cv" className="content-section">
-          <div className="heading-row">
-            <h2>CV</h2>
-            <a className="pdf-link" href="/joshua-strong-cv.pdf">
-              <FiFileText aria-hidden="true" data-icon="cv" size={15} />
-              <span>Download PDF</span>
-            </a>
-          </div>
+          <h2>CV</h2>
 
           <div className="cv-group">
             <h3 className="subheading">Experience</h3>

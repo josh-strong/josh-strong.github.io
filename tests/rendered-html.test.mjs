@@ -36,10 +36,9 @@ test("server-renders Joshua Strong's academic website", async () => {
   assert.match(html, /<h1>About me<\/h1>/i);
   assert.match(html, /Human-AI Collaboration in Healthcare: A Scoping Review/);
   assert.match(html, /https:\/\/www\.nature\.com\/articles\/s41746-026-02918-6/);
-  assert.match(html, /href="\/joshua-strong-cv\.pdf"/);
+  assert.doesNotMatch(html, /joshua-strong-cv\.pdf/);
   assert.match(html, /src="\/joshua-strong\.png"/);
   assert.match(html, /data-icon="mail"/);
-  assert.match(html, /data-icon="cv"/);
   assert.match(html, /data-icon="github"/);
   assert.match(html, /data-icon="linkedin"/);
   assert.match(html, /content="http:\/\/localhost(?::3000)?\/og-dark\.png"/);
