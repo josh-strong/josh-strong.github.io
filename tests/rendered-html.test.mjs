@@ -39,8 +39,10 @@ test("server-renders Joshua Strong's academic website", async () => {
   assert.doesNotMatch(html, /joshua-strong-cv\.pdf/);
   assert.match(html, /src="\/joshua-strong\.png"/);
   assert.match(html, /data-icon="mail"/);
+  assert.match(html, /data-icon="google-scholar"/);
   assert.match(html, /data-icon="github"/);
   assert.match(html, /data-icon="linkedin"/);
+  assert.match(html, /scholar\.google\.co\.uk\/scholar/);
   assert.match(html, /content="http:\/\/localhost(?::3000)?\/og-dark\.png"/);
   assert.doesNotMatch(html, /codex-preview|Building your site/);
 });

@@ -1,5 +1,6 @@
 import { FaGithub, FaLinkedinIn } from "react-icons/fa6";
 import { FiMail } from "react-icons/fi";
+import { SiGooglescholar } from "react-icons/si";
 
 const publications = [
   {
@@ -122,6 +123,14 @@ export default function Home() {
             <a href="mailto:joshua.strong@eng.ox.ac.uk">
               <FiMail aria-hidden="true" data-icon="mail" size={15} />
               <span>Email</span>
+            </a>
+            <a href="https://scholar.google.co.uk/scholar?hl=en&as_sauthors=%22Joshua+Strong%22">
+              <SiGooglescholar
+                aria-hidden="true"
+                data-icon="google-scholar"
+                size={15}
+              />
+              <span>Google Scholar</span>
             </a>
             <a href="https://github.com/josh-strong">
               <FaGithub aria-hidden="true" data-icon="github" size={15} />
