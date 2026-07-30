@@ -1,6 +1,14 @@
 const publications = [
   {
     year: "2026",
+    title: "Human-AI Collaboration in Healthcare: A Scoping Review",
+    authors:
+      "Joshua Strong, Harry Rogers, Emma Sun, Anna Louise Todsen, Jody Ede, Cherry Lumley, Nick Yeung, Helen Higham, and J. Alison Noble",
+    venue: "npj Digital Medicine",
+    href: "https://www.nature.com/articles/s41746-026-02918-6",
+  },
+  {
+    year: "2026",
     title: "Identity-Free Deferral for Unseen Experts",
     authors:
       "Joshua Strong, Pramit Saha, Yasin Ibrahim, Cheng Ouyang, and J. Alison Noble",
