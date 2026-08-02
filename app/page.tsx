@@ -1,6 +1,7 @@
 import { FaGithub, FaLinkedinIn } from "react-icons/fa6";
 import { FiMail } from "react-icons/fi";
 import { SiGooglescholar } from "react-icons/si";
+import { ThemeToggle } from "./theme-toggle";
 
 const publications = [
   {
@@ -95,14 +96,17 @@ export default function Home() {
           <a className="wordmark" href="#about" aria-label="Joshua Strong, home">
             Joshua Strong
           </a>
-          <nav aria-label="Primary navigation">
-            <a className="active" href="#about">
-              About
-            </a>
-            <a href="#research">Research</a>
-            <a href="#publications">Publications</a>
-            <a href="#cv">CV</a>
-          </nav>
+          <div className="nav-actions">
+            <nav aria-label="Primary navigation">
+              <a className="active" href="#about">
+                About
+              </a>
+              <a href="#research">Research</a>
+              <a href="#publications">Publications</a>
+              <a href="#cv">CV</a>
+            </nav>
+            <ThemeToggle />
+          </div>
         </div>
       </header>
 

@@ -51,6 +51,8 @@ test("server-renders Joshua Strong's academic website", async () => {
   assert.match(html, /data-icon="google-scholar"/);
   assert.match(html, /data-icon="github"/);
   assert.match(html, /data-icon="linkedin"/);
+  assert.match(html, /data-theme-toggle="true"/);
+  assert.match(html, /Toggle light and dark mode/);
   assert.match(
     html,
     /scholar\.google\.co\.uk\/citations\?user=vFoP8mIAAAAJ&amp;hl=en/,
@@ -61,13 +63,17 @@ test("server-renders Joshua Strong's academic website", async () => {
   assert.doesNotMatch(html, /codex-preview|Building your site/);
 });
 
-test("keeps the reference-inspired dark layout and responsive guardrails", async () => {
-  const [css, page, layout] = await Promise.all([
+test("supports system-aware light and dark themes with responsive guardrails", async () => {
+  const [css, page, layout, themeToggle] = await Promise.all([
     readFile(new URL("../app/globals.css", import.meta.url), "utf8"),
     readFile(new URL("../app/page.tsx", import.meta.url), "utf8"),
     readFile(new URL("../app/layout.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../app/theme-toggle.tsx", import.meta.url), "utf8"),
   ]);
 
+  assert.match(css, /--background:\s*#f6f6f3/);
+  assert.match(css, /html\[data-theme="dark"\]/);
+  assert.match(css, /@media \(prefers-color-scheme:\s*dark\)/);
   assert.match(css, /--background:\s*#191919/);
   assert.match(css, /--navigation:\s*#232323/);
   assert.match(css, /width:\s*min\(720px,\s*calc\(100%\s*-\s*40px\)\)/);
@@ -75,5 +81,10 @@ test("keeps the reference-inspired dark layout and responsive guardrails", async
   assert.match(css, /@media \(max-width:\s*620px\)/);
   assert.match(page, /className="profile-photo"/);
   assert.match(page, /className="publication-list"/);
+  assert.match(page, /<ThemeToggle \/>/);
+  assert.match(layout, /joshua-strong-theme/);
+  assert.match(layout, /prefers-color-scheme: dark/);
+  assert.match(themeToggle, /localStorage\.setItem\(themeStorageKey, nextTheme\)/);
+  assert.match(themeToggle, /addEventListener\("change"/);
   assert.match(layout, /\/og-dark\.png/);
 });
