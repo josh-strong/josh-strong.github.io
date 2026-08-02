@@ -5,6 +5,23 @@ import { SiGooglescholar } from "react-icons/si";
 const publications = [
   {
     year: "2026",
+    title:
+      "Coherent Hierarchical Multi-Label Learning to Defer for Medical Imaging",
+    authors:
+      "Joshua Strong, Pramit Saha, Emma Sun, Helen Higham, and J. Alison Noble",
+    venue: "Advances in Neural Information Processing Systems (NeurIPS)",
+    href: "https://arxiv.org/abs/2605.02734",
+  },
+  {
+    year: "2026",
+    title: "Learning to Defer: A Survey",
+    authors:
+      "Joshua Strong, Emma Sun, Harry Rogers, Helen Higham, and J. Alison Noble",
+    venue: "ACM Computing Surveys",
+    href: "https://doi.org/10.5281/zenodo.17843044",
+  },
+  {
+    year: "2026",
     title: "Human-AI Collaboration in Healthcare: A Scoping Review",
     authors:
       "Joshua Strong, Harry Rogers, Emma Sun, Anna Louise Todsen, Jody Ede, Cherry Lumley, Nick Yeung, Helen Higham, and J. Alison Noble",

@@ -36,6 +36,15 @@ test("server-renders Joshua Strong's academic website", async () => {
   assert.match(html, /<h1>About me<\/h1>/i);
   assert.match(html, /Human-AI Collaboration in Healthcare: A Scoping Review/);
   assert.match(html, /https:\/\/www\.nature\.com\/articles\/s41746-026-02918-6/);
+  assert.match(
+    html,
+    /Coherent Hierarchical Multi-Label Learning to Defer for Medical Imaging/,
+  );
+  assert.match(html, /https:\/\/arxiv\.org\/abs\/2605\.02734/);
+  assert.match(html, /Learning to Defer: A Survey/);
+  assert.match(html, /https:\/\/doi\.org\/10\.5281\/zenodo\.17843044/);
+  assert.match(html, /Advances in Neural Information Processing Systems \(NeurIPS\)/);
+  assert.match(html, /ACM Computing Surveys/);
   assert.doesNotMatch(html, /joshua-strong-cv\.pdf/);
   assert.match(html, /src="\/joshua-strong\.png"/);
   assert.match(html, /data-icon="mail"/);
