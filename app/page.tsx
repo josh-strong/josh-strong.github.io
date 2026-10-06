@@ -1,5 +1,4 @@
 import { FaGithub, FaLinkedinIn } from "react-icons/fa6";
-import { FiMail } from "react-icons/fi";
 import { SiGooglescholar } from "react-icons/si";
 import { ThemeToggle } from "./theme-toggle";
 
@@ -84,7 +83,6 @@ const education = [
     dates: "2015-2018",
     institution: "University of York",
     qualification: "BSc (Hons) in Mathematics, First Class",
-    detail: "Ranked second in cohort.",
   },
 ];
 
@@ -141,10 +139,6 @@ export default function Home() {
             </p>
           </div>
           <div className="profile-links" aria-label="External links">
-            <a href="mailto:joshua.strong@eng.ox.ac.uk">
-              <FiMail aria-hidden="true" data-icon="mail" size={15} />
-              <span>Email</span>
-            </a>
             <a href="https://scholar.google.co.uk/citations?user=vFoP8mIAAAAJ&hl=en">
               <SiGooglescholar
                 aria-hidden="true"
@@ -225,7 +219,7 @@ export default function Home() {
                   <p className="institution">{item.institution}</p>
                 </div>
                 <time>{item.dates.replace("-", "–")}</time>
-                <p className="cv-detail">{item.detail}</p>
+                {item.detail && <p className="cv-detail">{item.detail}</p>}
               </article>
             ))}
           </div>
@@ -245,11 +239,8 @@ export default function Home() {
         <section id="contact" className="content-section contact-section">
           <h2>Contact</h2>
           <p>
-            The best way to reach me is by email at{" "}
-            <a href="mailto:joshua.strong@eng.ox.ac.uk">
-              joshua.strong@eng.ox.ac.uk
-            </a>
-            .
+            Please feel free to get in touch via{" "}
+            <a href="https://www.linkedin.com/in/josh-strong/">LinkedIn</a>.
           </p>
         </section>
       </main>

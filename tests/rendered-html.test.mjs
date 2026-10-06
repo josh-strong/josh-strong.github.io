@@ -47,7 +47,6 @@ test("server-renders Joshua Strong's academic website", async () => {
   assert.match(html, /ACM Computing Surveys/);
   assert.doesNotMatch(html, /joshua-strong-cv\.pdf/);
   assert.match(html, /src="\/joshua-strong\.png"/);
-  assert.match(html, /data-icon="mail"/);
   assert.match(html, /data-icon="google-scholar"/);
   assert.match(html, /data-icon="github"/);
   assert.match(html, /data-icon="linkedin"/);
@@ -59,6 +58,9 @@ test("server-renders Joshua Strong's academic website", async () => {
   );
   assert.match(html, /https:\/\/github\.com\/josh-strong/);
   assert.match(html, /https:\/\/www\.linkedin\.com\/in\/josh-strong\//);
+  assert.doesNotMatch(html, /joshua\.strong@eng\.ox\.ac\.uk|mailto:/i);
+  assert.doesNotMatch(html, /Ranked second in cohort/i);
+  assert.match(html, /Please feel free to get in touch via/);
   assert.match(html, /content="http:\/\/localhost(?::3000)?\/og-dark\.png"/);
   assert.doesNotMatch(html, /codex-preview|Building your site/);
 });
