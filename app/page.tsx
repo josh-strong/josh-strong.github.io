@@ -118,8 +118,8 @@ export default function Home() {
               <img
                 src="/joshua-strong.png"
                 alt="Portrait of Joshua Strong"
-                width="1000"
-                height="801"
+                width="1122"
+                height="1402"
               />
             </figure>
             <p>
