@@ -9,7 +9,6 @@ const publications = [
       "Coherent Hierarchical Multi-Label Learning to Defer for Medical Imaging",
     authors:
       "Joshua Strong, Pramit Saha, Emma Sun, Helen Higham, and J. Alison Noble",
-    status: "Accepted",
     venue: "Advances in Neural Information Processing Systems (NeurIPS)",
     href: "https://arxiv.org/abs/2605.02734",
   },
@@ -18,7 +17,6 @@ const publications = [
     title: "Learning to Defer: A Survey",
     authors:
       "Joshua Strong, Emma Sun, Harry Rogers, Helen Higham, and J. Alison Noble",
-    status: "Accepted",
     venue: "ACM Computing Surveys",
     href: "https://doi.org/10.5281/zenodo.17843044",
   },
@@ -27,7 +25,6 @@ const publications = [
     title: "Human-AI Collaboration in Healthcare: A Scoping Review",
     authors:
       "Joshua Strong, Harry Rogers, Emma Sun, Anna Louise Todsen, Jody Ede, Cherry Lumley, Nick Yeung, Helen Higham, and J. Alison Noble",
-    status: "Published",
     venue: "npj Digital Medicine",
     href: "https://www.nature.com/articles/s41746-026-02918-6",
   },
@@ -36,7 +33,6 @@ const publications = [
     title: "Identity-Free Deferral for Unseen Experts",
     authors:
       "Joshua Strong, Pramit Saha, Yasin Ibrahim, Cheng Ouyang, and J. Alison Noble",
-    status: "Published",
     venue: "International Conference on Learning Representations (ICLR)",
     href: "https://openreview.net/forum?id=4YG9ufFg58",
   },
@@ -45,7 +41,6 @@ const publications = [
     title:
       "Trustworthy and Practical AI for Healthcare: A Guided Deferral System with Large Language Models",
     authors: "Joshua Strong, Qianhui Men, and J. Alison Noble",
-    status: "Published",
     venue: "Proceedings of the AAAI Conference on Artificial Intelligence",
     href: "https://doi.org/10.1609/aaai.v39i27.35063",
   },
@@ -197,9 +192,6 @@ export default function Home() {
                     .map((publication) => (
                       <article className="publication" key={publication.title}>
                         <div className="publication-meta">
-                          <span className="publication-status">
-                            {publication.status}
-                          </span>
                           <span className="venue">{publication.venue}</span>
                         </div>
                         <h3 className="publication-title">

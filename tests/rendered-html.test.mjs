@@ -84,7 +84,7 @@ test("supports system-aware light and dark themes with responsive guardrails", a
   assert.match(page, /className="profile-photo"/);
   assert.match(page, /className="publication-timeline"/);
   assert.match(page, /className="timeline-year"/);
-  assert.match(page, /className="publication-status"/);
+  assert.doesNotMatch(page, /publication-status/);
   assert.match(css, /\.publication-timeline::before/);
   assert.match(css, /\.publication::before/);
   assert.match(page, /<ThemeToggle \/>/);
