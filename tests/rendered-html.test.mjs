@@ -45,6 +45,7 @@ test("server-renders Joshua Strong's academic website", async () => {
   assert.match(html, /https:\/\/doi\.org\/10\.5281\/zenodo\.17843044/);
   assert.match(html, /Advances in Neural Information Processing Systems \(NeurIPS\)/);
   assert.match(html, /ACM Computing Surveys/);
+  assert.match(html, /class="author-self">Joshua Strong<\/strong>/);
   assert.doesNotMatch(html, /joshua-strong-cv\.pdf/);
   assert.match(html, /src="\/joshua-strong\.png"/);
   assert.match(html, /data-icon="google-scholar"/);

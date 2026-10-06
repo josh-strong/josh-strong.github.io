@@ -398,6 +398,11 @@ p {
   line-height: 1.55;
 }
 
+.author-self {
+  color: var(--text);
+  font-weight: 600;
+}
+
 .cv-group {
   margin-top: 28px;
 }

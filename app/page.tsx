@@ -198,7 +198,8 @@ export default function Home() {
                           <a href={publication.href}>{publication.title}</a>
                         </h3>
                         <p className="publication-authors">
-                          {publication.authors}
+                          <strong className="author-self">Joshua Strong</strong>
+                          {publication.authors.slice("Joshua Strong".length)}
                         </p>
                       </article>
                     ))}
