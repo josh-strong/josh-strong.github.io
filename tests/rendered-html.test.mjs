@@ -82,7 +82,11 @@ test("supports system-aware light and dark themes with responsive guardrails", a
   assert.match(css, /font-size:\s*40px/);
   assert.match(css, /@media \(max-width:\s*620px\)/);
   assert.match(page, /className="profile-photo"/);
-  assert.match(page, /className="publication-list"/);
+  assert.match(page, /className="publication-timeline"/);
+  assert.match(page, /className="timeline-year"/);
+  assert.match(page, /className="publication-status"/);
+  assert.match(css, /\.publication-timeline::before/);
+  assert.match(css, /\.publication::before/);
   assert.match(page, /<ThemeToggle \/>/);
   assert.match(layout, /joshua-strong-theme/);
   assert.match(layout, /prefers-color-scheme: dark/);
