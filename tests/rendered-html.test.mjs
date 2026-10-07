@@ -51,7 +51,10 @@ test("server-renders Joshua Strong's academic website", async () => {
   assert.match(html, /ACM Computing Surveys/);
   assert.match(html, /class="author-self">Joshua Strong<\/strong>/);
   assert.doesNotMatch(html, /joshua-strong-cv\.pdf/);
-  assert.match(html, /src="\/joshua-strong\.png"/);
+  assert.match(
+    html,
+    /src="\/joshua-strong\.png" alt="Portrait of Joshua Strong" width="192" height="256"/,
+  );
   assert.match(html, /data-icon="google-scholar"/);
   assert.match(html, /data-icon="github"/);
   assert.match(html, /data-icon="linkedin"/);
