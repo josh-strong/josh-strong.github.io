@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { SiteHeader } from "../../site-header";
+import { L2DIntroPost } from "../l2d-intro";
 import { blogPosts, getBlogPost } from "../posts";
 
 type BlogPostPageProps = {
@@ -55,16 +56,20 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             <p className="blog-deck">{post.description}</p>
           </header>
 
-          <div className="blog-post-body">
-            {post.sections.map((section) => (
-              <section key={section.heading}>
-                <h2>{section.heading}</h2>
-                {section.paragraphs.map((paragraph) => (
-                  <p key={paragraph}>{paragraph}</p>
-                ))}
-              </section>
-            ))}
-          </div>
+          {post.slug === "introduction-to-learning-to-defer" ? (
+            <L2DIntroPost />
+          ) : (
+            <div className="blog-post-body">
+              {post.sections.map((section) => (
+                <section key={section.heading}>
+                  <h2>{section.heading}</h2>
+                  {section.paragraphs.map((paragraph) => (
+                    <p key={paragraph}>{paragraph}</p>
+                  ))}
+                </section>
+              ))}
+            </div>
+          )}
 
           {post.paperUrl && (
             <aside className="paper-callout">

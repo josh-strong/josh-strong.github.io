@@ -18,12 +18,12 @@ export type BlogPost = {
 export const blogPosts: BlogPost[] = [
   {
     slug: "introduction-to-learning-to-defer",
-    title: "An introduction to learning to defer",
+    title: "Learning to defer: OvA versus calibrated confidence",
     description:
-      "Why an AI system should sometimes hand a decision to a person—and what it takes to learn when that handover is useful.",
+      "A notebook-based walkthrough of how one-vs-all learning to defer models expert correctness—and why that differs from deferring on uncertainty alone.",
     label: "Primer",
     year: "2026",
-    readTime: "5 min read",
+    readTime: "9 min read",
     sections: [
       {
         heading: "Prediction is not always the whole job",

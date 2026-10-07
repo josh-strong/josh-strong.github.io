@@ -653,6 +653,145 @@ p {
   line-height: 1.72;
 }
 
+.notebook-post section + section {
+  margin-top: 44px;
+}
+
+.post-facts {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1px;
+  margin: 28px 0 0;
+  border: 1px solid var(--line);
+  background: var(--line);
+}
+
+.post-facts > div {
+  min-width: 0;
+  padding: 18px;
+  background: var(--surface);
+}
+
+.post-facts strong,
+.post-facts span {
+  display: block;
+}
+
+.post-facts strong {
+  font-size: 26px;
+  line-height: 1.15;
+}
+
+.post-facts span {
+  margin-top: 5px;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.35;
+}
+
+.code-block {
+  margin: 22px 0;
+  padding: 20px;
+  overflow-x: auto;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  background: #111111;
+  color: #ecece8;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+    "Liberation Mono", monospace;
+  font-size: 13px;
+  line-height: 1.55;
+  tab-size: 4;
+}
+
+.loss-table {
+  margin: 22px 0;
+  overflow: hidden;
+  border: 1px solid var(--line);
+}
+
+.loss-row {
+  display: grid;
+  grid-template-columns: 1fr 0.9fr 1.6fr;
+}
+
+.loss-row + .loss-row {
+  border-top: 1px solid var(--line);
+}
+
+.loss-row span {
+  min-width: 0;
+  padding: 12px 14px;
+}
+
+.loss-row span + span {
+  border-left: 1px solid var(--line);
+}
+
+.loss-header {
+  background: var(--surface);
+  font-weight: 700;
+}
+
+.equation {
+  margin: 22px 0;
+  padding: 18px 20px;
+  overflow-x: auto;
+  border-left: 3px solid var(--text);
+  background: var(--surface);
+  font-size: 18px;
+  line-height: 1.55;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.experiment-figure {
+  margin: 26px 0;
+}
+
+.experiment-figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--line);
+  background: #ffffff;
+}
+
+.experiment-figure figcaption {
+  margin-top: 10px;
+  color: var(--faint);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.method-note {
+  margin-top: 24px;
+  padding: 18px 20px;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.method-note strong {
+  color: var(--text);
+}
+
+.post-references ol {
+  margin: 0;
+  padding-left: 22px;
+}
+
+.post-references li {
+  padding-left: 5px;
+  line-height: 1.6;
+}
+
+.post-references li + li {
+  margin-top: 12px;
+}
+
 .paper-callout {
   display: flex;
   align-items: center;
@@ -753,6 +892,23 @@ footer {
   .paper-callout {
     align-items: flex-start;
     flex-direction: column;
+  }
+
+  .post-facts {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .loss-row {
+    grid-template-columns: 0.9fr 0.8fr 1.5fr;
+    font-size: 14px;
+  }
+
+  .loss-row span {
+    padding: 10px;
+  }
+
+  .equation {
+    text-align: left;
   }
 
   .publication-timeline::before {

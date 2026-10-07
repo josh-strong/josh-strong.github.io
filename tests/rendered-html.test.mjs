@@ -121,10 +121,26 @@ test("renders a blog index and individual publication notes", async () => {
 
   assert.match(indexHtml, /<title>Blogs \| Joshua Strong<\/title>/i);
   assert.match(indexHtml, /<h1>Blogs<\/h1>/i);
-  assert.match(indexHtml, /An introduction to learning to defer/i);
+  assert.match(indexHtml, /Learning to defer: OvA versus calibrated confidence/i);
   assert.match(indexHtml, /Behind the papers/i);
   assert.match(indexHtml, /\/blog\/coherent-hierarchical-learning-to-defer/);
   assert.match(indexHtml, /\/blog\/guided-deferral-with-language-models/);
+
+  const introResponse = await render(
+    "/blog/introduction-to-learning-to-defer",
+  );
+  assert.equal(introResponse.status, 200);
+  const introHtml = await introResponse.text();
+
+  assert.match(introHtml, /Learning to defer: OvA versus calibrated confidence/i);
+  assert.match(introHtml, /The one-vs-all deferral loss/i);
+  assert.match(introHtml, /class="code-block"/);
+  assert.match(introHtml, /l2d-ova-vs-confidence\.png/);
+  assert.match(introHtml, /proceedings\.mlr\.press\/v162\/verma22c\.html/);
+  assert.match(introHtml, /doi\.org\/10\.1038\/s41597-022-01498-w/);
+  assert.match(introHtml, /0\.8707/);
+  assert.match(introHtml, /0\.8543/);
+  assert.doesNotMatch(introHtml, /CE-L2D/);
 
   const postResponse = await render(
     "/blog/identity-free-deferral",
@@ -137,4 +153,14 @@ test("renders a blog index and individual publication notes", async () => {
   assert.match(postHtml, /Read the ICLR paper/i);
   assert.match(postHtml, /proceedings\.iclr\.cc/);
   assert.match(postHtml, /href="\/blog"[^>]*>Blogs<\/a>/);
+});
+
+test("styles the notebook-based learning-to-defer article", async () => {
+  const css = await readFile(new URL("../app/globals.css", import.meta.url), "utf8");
+
+  assert.match(css, /\.post-facts\s*\{/);
+  assert.match(css, /\.code-block\s*\{/);
+  assert.match(css, /\.loss-table\s*\{/);
+  assert.match(css, /\.experiment-figure img\s*\{/);
+  assert.match(css, /\.method-note\s*\{/);
 });
