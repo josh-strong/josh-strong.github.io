@@ -2,13 +2,13 @@ import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 import test from "node:test";
 
-async function render() {
+async function render(path = "/") {
   const workerUrl = new URL("../dist/server/index.js", import.meta.url);
   workerUrl.searchParams.set("test", `${process.pid}-${Date.now()}`);
   const { default: worker } = await import(workerUrl.href);
 
   return worker.fetch(
-    new Request("http://localhost/", {
+    new Request(`http://localhost${path}`, {
       headers: { accept: "text/html" },
     }),
     {
@@ -59,6 +59,7 @@ test("server-renders Joshua Strong's academic website", async () => {
   assert.match(html, /data-icon="github"/);
   assert.match(html, /data-icon="linkedin"/);
   assert.match(html, /data-theme-toggle="true"/);
+  assert.match(html, /href="\/blog">Blogs<\/a>/);
   assert.match(html, /Toggle light and dark mode/);
   assert.match(
     html,
@@ -77,11 +78,12 @@ test("server-renders Joshua Strong's academic website", async () => {
 });
 
 test("supports system-aware light and dark themes with responsive guardrails", async () => {
-  const [css, page, layout, themeToggle] = await Promise.all([
+  const [css, page, layout, themeToggle, siteHeader] = await Promise.all([
     readFile(new URL("../app/globals.css", import.meta.url), "utf8"),
     readFile(new URL("../app/page.tsx", import.meta.url), "utf8"),
     readFile(new URL("../app/layout.tsx", import.meta.url), "utf8"),
     readFile(new URL("../app/theme-toggle.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../app/site-header.tsx", import.meta.url), "utf8"),
   ]);
 
   assert.match(css, /--background:\s*#f6f6f3/);
@@ -101,10 +103,36 @@ test("supports system-aware light and dark themes with responsive guardrails", a
   assert.doesNotMatch(page, /publication-status/);
   assert.match(css, /\.publication-timeline::before/);
   assert.match(css, /\.publication::before/);
-  assert.match(page, /<ThemeToggle \/>/);
+  assert.match(page, /<SiteHeader active="home" \/>/);
+  assert.match(siteHeader, /<ThemeToggle \/>/);
   assert.match(layout, /joshua-strong-theme/);
   assert.match(layout, /prefers-color-scheme: dark/);
   assert.match(themeToggle, /localStorage\.setItem\(themeStorageKey, nextTheme\)/);
   assert.match(themeToggle, /addEventListener\("change"/);
   assert.match(layout, /\/og-dark\.png/);
+});
+
+test("renders a blog index and individual publication notes", async () => {
+  const indexResponse = await render("/blog");
+  assert.equal(indexResponse.status, 200);
+  const indexHtml = await indexResponse.text();
+
+  assert.match(indexHtml, /<title>Blogs \| Joshua Strong<\/title>/i);
+  assert.match(indexHtml, /<h1>Blogs<\/h1>/i);
+  assert.match(indexHtml, /An introduction to learning to defer/i);
+  assert.match(indexHtml, /Behind the papers/i);
+  assert.match(indexHtml, /\/blog\/coherent-hierarchical-learning-to-defer/);
+  assert.match(indexHtml, /\/blog\/guided-deferral-with-language-models/);
+
+  const postResponse = await render(
+    "/blog/identity-free-deferral",
+  );
+  assert.equal(postResponse.status, 200);
+  const postHtml = await postResponse.text();
+
+  assert.match(postHtml, /<h1>Deferring to experts the model has never met<\/h1>/i);
+  assert.match(postHtml, /Removing the identity shortcut/i);
+  assert.match(postHtml, /Read the ICLR paper/i);
+  assert.match(postHtml, /proceedings\.iclr\.cc/);
+  assert.match(postHtml, /href="\/blog"[^>]*>Blogs<\/a>/);
 });

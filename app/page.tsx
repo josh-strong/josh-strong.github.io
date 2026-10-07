@@ -1,6 +1,6 @@
 import { FaGithub, FaLinkedinIn } from "react-icons/fa6";
 import { SiGooglescholar } from "react-icons/si";
-import { ThemeToggle } from "./theme-toggle";
+import { SiteHeader } from "./site-header";
 
 const publications = [
   {
@@ -91,24 +91,7 @@ const education = [
 export default function Home() {
   return (
     <>
-      <header className="site-header">
-        <div className="nav-inner">
-          <a className="wordmark" href="#about" aria-label="Joshua Strong, home">
-            Joshua Strong
-          </a>
-          <div className="nav-actions">
-            <nav aria-label="Primary navigation">
-              <a className="active" href="#about">
-                About
-              </a>
-              <a href="#research">Research</a>
-              <a href="#publications">Publications</a>
-              <a href="#cv">CV</a>
-            </nav>
-            <ThemeToggle />
-          </div>
-        </div>
-      </header>
+      <SiteHeader active="home" />
 
       <main className="site-main">
         <section id="about" className="about-section">
