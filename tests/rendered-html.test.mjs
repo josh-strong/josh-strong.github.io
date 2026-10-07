@@ -79,6 +79,9 @@ test("supports system-aware light and dark themes with responsive guardrails", a
   ]);
 
   assert.match(css, /--background:\s*#f6f6f3/);
+  assert.match(css, /font-family:\s*"Linux Libertine"/);
+  assert.match(css, /linux-libertine-regular\.woff2/);
+  assert.match(css, /linux-libertine-bold\.woff2/);
   assert.match(css, /html\[data-theme="dark"\]/);
   assert.match(css, /@media \(prefers-color-scheme:\s*dark\)/);
   assert.match(css, /--background:\s*#191919/);
