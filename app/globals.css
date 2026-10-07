@@ -719,12 +719,12 @@ p {
   border-top: 1px solid var(--line);
 }
 
-.loss-row span {
+.loss-row > span {
   min-width: 0;
   padding: 12px 14px;
 }
 
-.loss-row span + span {
+.loss-row > span + span {
   border-left: 1px solid var(--line);
 }
 
@@ -733,15 +733,28 @@ p {
   font-weight: 700;
 }
 
-.equation {
+.latex-display {
   margin: 22px 0;
   padding: 18px 20px;
   overflow-x: auto;
   border-left: 3px solid var(--text);
   background: var(--surface);
-  font-size: 18px;
   line-height: 1.55;
+  -webkit-overflow-scrolling: touch;
+}
+
+.latex-display .katex-display {
+  width: max-content;
+  min-width: 100%;
+  margin: 0;
   text-align: center;
+}
+
+.latex-display .katex {
+  font-size: 1.05em;
+}
+
+.latex-inline {
   white-space: nowrap;
 }
 
@@ -925,11 +938,16 @@ footer {
     font-size: 14px;
   }
 
-  .loss-row span {
+  .loss-row > span {
     padding: 10px;
   }
 
-  .equation {
+  .latex-display {
+    padding: 16px;
+  }
+
+  .latex-display .katex-display {
+    min-width: max-content;
     text-align: left;
   }
 

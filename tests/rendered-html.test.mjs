@@ -142,6 +142,11 @@ test("renders a blog index and individual publication notes", async () => {
   assert.match(introHtml, /What this example demonstrates/i);
   assert.match(introHtml, /How deferral helps/i);
   assert.match(introHtml, /The one-vs-all deferral loss/i);
+  assert.match(introHtml, /Equation[\s\S]{0,40}\(8\)/i);
+  assert.match(introHtml, /class="katex"/);
+  assert.match(introHtml, /ψ/);
+  assert.match(introHtml, /BCELogit/);
+  assert.match(introHtml, /hard rejector/i);
   assert.match(introHtml, /class="code-block"/);
   assert.match(introHtml, /l2d-ova-vs-confidence\.png/);
   assert.match(introHtml, /proceedings\.mlr\.press\/v162\/verma22c\.html/);
@@ -174,6 +179,8 @@ test("styles the notebook-based learning-to-defer article", async () => {
   assert.match(css, /\.post-facts\s*\{/);
   assert.match(css, /\.code-block\s*\{/);
   assert.match(css, /\.loss-table\s*\{/);
+  assert.match(css, /\.latex-display\s*\{/);
+  assert.match(css, /\.latex-display \.katex-display\s*\{/);
   assert.match(css, /\.experiment-figure img\s*\{/);
   assert.match(css, /\.method-note\s*\{/);
   assert.match(css, /\.post-limitations\s*\{/);

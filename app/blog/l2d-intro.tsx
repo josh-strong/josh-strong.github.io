@@ -1,3 +1,5 @@
+import { Latex } from "../latex";
+
 export function L2DIntroPost() {
   return (
     <div className="blog-post-body notebook-post">
@@ -80,11 +82,57 @@ export function L2DIntroPost() {
       <section>
         <h2>The one-vs-all deferral loss</h2>
         <p>
-          For a binary finding, let <em>y</em> be the reference label, <em>m</em> the
-          expert&apos;s answer, and <em>g</em><sub>0</sub>, <em>g</em><sub>1</sub>, and{" "}
-          <em>g</em><sub>⊥</sub> the absent, present, and defer logits. The targets
-          are deliberately simple:
+          I use the notation from Verma and Nalisnick&apos;s paper first. Let{" "}
+          <Latex>{"\\mathcal{Y}=\\{1,\\ldots,K\\}"}</Latex> be the class set,{" "}
+          <Latex>{"y\\in\\mathcal{Y}"}</Latex> the reference label,{" "}
+          <Latex>{"m\\in\\mathcal{Y}"}</Latex> the expert&apos;s answer, and{" "}
+          <Latex>{"g_1(x),\\ldots,g_K(x),g_\\perp(x)"}</Latex> the class and
+          defer logits. Their point-wise OvA surrogate is Equation&nbsp;(8):
         </p>
+        <Latex display>
+          {"\\begin{aligned}\n" +
+            "\\psi_{\\mathrm{OvA}}&(g_1,\\ldots,g_K,g_\\perp;\\,x,y,m) \\\\\n" +
+            "&= \\phi\\!\\left(g_y(x)\\right)\n" +
+            "+ \\sum_{\\substack{y'\\in\\mathcal{Y}\\\\y'\\neq y}}\n" +
+            "  \\phi\\!\\left(-g_{y'}(x)\\right)\n" +
+            "+ \\phi\\!\\left(-g_\\perp(x)\\right) \\\\\n" +
+            "&\\quad\n" +
+            "+ \\mathbb{I}[m=y]\\!\n" +
+            "  \\left[\n" +
+            "    \\phi\\!\\left(g_\\perp(x)\\right)\n" +
+            "    - \\phi\\!\\left(-g_\\perp(x)\\right)\n" +
+            "  \\right].\n" +
+            "\\end{aligned}"}
+        </Latex>
+        <p>
+          Here <Latex>{"\\phi"}</Latex> can be any suitable binary surrogate.
+          The notebook uses the logistic loss:
+        </p>
+        <Latex display>
+          {"\\phi(t)=\\log\\!\\left(1+\\exp(-t)\\right)."}
+        </Latex>
+        <p>
+          The first two terms form <Latex>{"K"}</Latex> one-vs-all class
+          problems. The final line forms one more binary problem for expert
+          correctness. When <Latex>{"m=y"}</Latex>, it reduces to{" "}
+          <Latex>{"\\phi(g_\\perp(x))"}</Latex>; otherwise it reduces to{" "}
+          <Latex>{"\\phi(-g_\\perp(x))"}</Latex>. This is exactly why the defer
+          output is trained against whether the expert was correct.
+        </p>
+        <p>
+          For each binary chest X-ray finding in this notebook,{" "}
+          <Latex>{"\\mathcal{Y}=\\{0,1\\}"}</Latex>. Equation&nbsp;(8) is therefore
+          implemented as three binary-cross-entropy-with-logits terms:
+        </p>
+        <Latex display>
+          {"\\begin{aligned}\n" +
+            "\\mathcal{L}_{\\mathrm{binary}}\n" +
+            "={}&\\operatorname{BCELogit}\\!\\left(g_0,\\mathbb{I}[y=0]\\right) \\\\\n" +
+            "&+\\operatorname{BCELogit}\\!\\left(g_1,\\mathbb{I}[y=1]\\right) \\\\\n" +
+            "&+\\operatorname{BCELogit}\\!\\left(g_\\perp,\\mathbb{I}[m=y]\\right).\n" +
+            "\\end{aligned}"}
+        </Latex>
+        <p>The three targets can be read directly as:</p>
         <div className="loss-table" role="table" aria-label="One-vs-all loss targets">
           <div className="loss-row loss-header" role="row">
             <span role="columnheader">Output</span>
@@ -92,28 +140,27 @@ export function L2DIntroPost() {
             <span role="columnheader">What it learns</span>
           </div>
           <div className="loss-row" role="row">
-            <span role="cell">Absent, g<sub>0</sub></span>
-            <span role="cell">𝟙[y = 0]</span>
+            <span role="cell">Absent, <Latex>{"g_0"}</Latex></span>
+            <span role="cell"><Latex>{"\\mathbb{I}[y=0]"}</Latex></span>
             <span role="cell">Probability that absent is correct</span>
           </div>
           <div className="loss-row" role="row">
-            <span role="cell">Present, g<sub>1</sub></span>
-            <span role="cell">𝟙[y = 1]</span>
+            <span role="cell">Present, <Latex>{"g_1"}</Latex></span>
+            <span role="cell"><Latex>{"\\mathbb{I}[y=1]"}</Latex></span>
             <span role="cell">Probability that present is correct</span>
           </div>
           <div className="loss-row" role="row">
-            <span role="cell">Defer, g<sub>⊥</sub></span>
-            <span role="cell">𝟙[m = y]</span>
+            <span role="cell">Defer, <Latex>{"g_\\perp"}</Latex></span>
+            <span role="cell"><Latex>{"\\mathbb{I}[m=y]"}</Latex></span>
             <span role="cell">Probability that the expert is correct</span>
           </div>
         </div>
-        <div className="equation" aria-label="The one-vs-all loss is binary cross entropy for the absent, present, and expert-correctness targets">
-          L<sub>OvA</sub> = BCE(g<sub>0</sub>, 𝟙[y=0]) + BCE(g<sub>1</sub>, 𝟙[y=1]) + BCE(g<sub>⊥</sub>, 𝟙[m=y])
-        </div>
         <p>
           In the notebook, the three binary cross-entropies are summed for each
-          image–finding pair, averaged across the batch, and divided by ln&nbsp;2 so
-          the loss is measured in bits. A numerically stable PyTorch version is:
+          image–finding pair, averaged across the batch, and divided by{" "}
+          <Latex>{"\\ln 2"}</Latex> so the loss is measured in bits. That final
+          scaling does not change the minimiser. A numerically stable PyTorch
+          version is:
         </p>
         <pre className="code-block" aria-label="Simplified one-vs-all loss in PyTorch">
           <code>{`def ova_loss(logits, y, expert):
@@ -145,22 +192,44 @@ export function L2DIntroPost() {
       <section>
         <h2>Two ways to decide when to ask a human</h2>
         <p>
-          OvA turns each logit into an independent probability q = σ(g). The
-          machine&apos;s predicted class is the larger of g<sub>0</sub> and g<sub>1</sub>.
-          Its deferral priority is:
+          The paper defines the classifier and hard rejector directly from the
+          logits:
         </p>
-        <div className="equation">
-          priority<sub>OvA</sub> = q<sub>⊥</sub> − max(q<sub>0</sub>, q<sub>1</sub>)
-        </div>
+        <Latex display>
+          {"\\hat y=h(x)=\\arg\\max_{k\\in\\{0,1\\}}g_k(x),\n" +
+            "\\qquad\n" +
+            "r(x)=\\mathbb{I}\\!\\left[\n" +
+            "g_\\perp(x)\\geq\\max_{k\\in\\{0,1\\}}g_k(x)\n" +
+            "\\right]."}
+        </Latex>
+        <p>
+          With logistic loss, the independent sigmoid outputs estimate class
+          probability and expert correctness:
+        </p>
+        <Latex display>
+          {"\\hat p_k(x)=\\sigma(g_k(x)),\n" +
+            "\\qquad\n" +
+            "\\hat p_m(x)=\\sigma(g_\\perp(x))."}
+        </Latex>
+        <p>
+          To draw a full performance curve across many deferral budgets, the
+          notebook uses the corresponding continuous advantage score:
+        </p>
+        <Latex display>
+          {"s_{\\mathrm{OvA}}(x)\n" +
+            "=\\sigma(g_\\perp(x))\n" +
+            "-\\max_{k\\in\\{0,1\\}}\\sigma(g_k(x))."}
+        </Latex>
         <p>
           In words: defer where estimated expert correctness most exceeds
           estimated machine correctness. The confidence baseline instead trains a
           standard binary classifier, fits one temperature per finding using only
           validation data, and defers the least confident predictions first:
         </p>
-        <div className="equation">
-          priority<sub>confidence</sub> = −max(p, 1 − p)
-        </div>
+        <Latex display>
+          {"s_{\\mathrm{confidence}}(x)\n" +
+            "=-\\max\\!\\left(p(x),1-p(x)\\right)."}
+        </Latex>
         <p>
           The baseline can identify model uncertainty, but it never learns where
           R9 is likely to help. That is the conceptual difference this comparison
