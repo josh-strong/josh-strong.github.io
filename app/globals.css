@@ -758,6 +758,30 @@ p {
   white-space: nowrap;
 }
 
+.architecture-figure {
+  margin: 28px 0;
+}
+
+.architecture-figure-scroll {
+  overflow-x: auto;
+  border: 1px solid var(--line);
+  background: #ffffff;
+  -webkit-overflow-scrolling: touch;
+}
+
+.architecture-figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.architecture-figure figcaption {
+  margin-top: 10px;
+  color: var(--faint);
+  font-size: 13px;
+  line-height: 1.55;
+}
+
 .experiment-figure {
   margin: 26px 0;
 }
@@ -949,6 +973,11 @@ footer {
   .latex-display .katex-display {
     min-width: max-content;
     text-align: left;
+  }
+
+  .architecture-figure img {
+    width: 720px;
+    max-width: none;
   }
 
   .publication-timeline::before {

@@ -148,6 +148,9 @@ test("renders a blog index and individual publication notes", async () => {
   assert.match(introHtml, /BCELogit/);
   assert.match(introHtml, /hard rejector/i);
   assert.match(introHtml, /class="code-block"/);
+  assert.match(introHtml, /multilabel-l2d-architecture\.png/);
+  assert.match(introHtml, /Multi-label OvA-L2D architecture/i);
+  assert.match(introHtml, /class="architecture-figure"/);
   assert.match(introHtml, /l2d-ova-vs-confidence\.png/);
   assert.match(introHtml, /proceedings\.mlr\.press\/v162\/verma22c\.html/);
   assert.match(introHtml, /doi\.org\/10\.1038\/s41597-022-01498-w/);
@@ -181,6 +184,8 @@ test("styles the notebook-based learning-to-defer article", async () => {
   assert.match(css, /\.loss-table\s*\{/);
   assert.match(css, /\.latex-display\s*\{/);
   assert.match(css, /\.latex-display \.katex-display\s*\{/);
+  assert.match(css, /\.architecture-figure-scroll\s*\{/);
+  assert.match(css, /\.architecture-figure img\s*\{/);
   assert.match(css, /\.experiment-figure img\s*\{/);
   assert.match(css, /\.method-note\s*\{/);
   assert.match(css, /\.post-limitations\s*\{/);

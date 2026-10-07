@@ -53,6 +53,31 @@ export function L2DIntroPost() {
           per finding. OvA emits three: <em>absent</em>, <em>present</em>, and{" "}
           <em>defer</em>. The encoder and every head are trained end to end.
         </p>
+        <p>
+          The multi-label architecture below shows that structure explicitly.
+          The X-ray is encoded once, then each pathology head makes its own
+          three-way OvA-L2D assessment. Each head receives an independent
+          deferral loss, and those per-finding losses are summed to train the
+          full model.
+        </p>
+        <figure className="architecture-figure">
+          <div className="architecture-figure-scroll">
+            <img
+              src="/multilabel-l2d-architecture.png"
+              alt="Multi-label learning-to-defer architecture: a chest X-ray passes through a shared feature extractor and one head per pathology. Each head emits absent, present, and defer logits, receives an independent learning-to-defer loss, and the losses are summed."
+              width="1045"
+              height="357"
+            />
+          </div>
+          <figcaption>
+            Multi-label OvA-L2D architecture. For finding {" "}
+            <Latex>{"i"}</Latex>, the head emits absent, present, and defer
+            logits <Latex>{"(g_0^i,g_1^i,g_\\perp^i)"}</Latex>. Its loss depends
+            on the reference label <Latex>{"y^i"}</Latex> and the expert label {" "}
+            <Latex>{"m^i"}</Latex>; the model minimises the sum across all {" "}
+            <Latex>{"\\ell"}</Latex> findings.
+          </figcaption>
+        </figure>
         <pre className="code-block" aria-label="Simplified PyTorch model">
           <code>{`class L2DModel(nn.Module):
     def __init__(self, n_findings=17):
