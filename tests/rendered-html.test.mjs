@@ -55,6 +55,7 @@ test("server-renders Joshua Strong's academic website", async () => {
     html,
     /src="\/joshua-strong\.png" alt="Portrait of Joshua Strong" width="192" height="256"/,
   );
+  assert.match(html, /class="bio-copy"/);
   assert.match(html, /data-icon="google-scholar"/);
   assert.match(html, /data-icon="github"/);
   assert.match(html, /data-icon="linkedin"/);
@@ -96,6 +97,7 @@ test("supports system-aware light and dark themes with responsive guardrails", a
   assert.match(css, /--navigation:\s*#232323/);
   assert.match(css, /width:\s*min\(720px,\s*calc\(100%\s*-\s*40px\)\)/);
   assert.match(css, /font-size:\s*40px/);
+  assert.match(css, /\.bio\s*\{[\s\S]*grid-template-columns:\s*212px minmax\(0, 1fr\)/);
   assert.match(css, /@media \(max-width:\s*620px\)/);
   assert.match(page, /className="profile-photo"/);
   assert.match(page, /className="publication-timeline"/);

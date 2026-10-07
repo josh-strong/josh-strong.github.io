@@ -271,10 +271,16 @@ p {
   margin: 0 0 18px;
 }
 
+.bio {
+  display: grid;
+  grid-template-columns: 212px minmax(0, 1fr);
+  gap: 24px;
+  align-items: start;
+}
+
 .profile-photo {
-  float: left;
-  width: 212px;
-  margin: 4px 24px 10px 0;
+  width: 100%;
+  margin: 4px 0 0;
 }
 
 .profile-photo img {
@@ -286,10 +292,8 @@ p {
   object-position: 50% 36%;
 }
 
-.bio::after {
-  display: block;
-  clear: both;
-  content: "";
+.bio-copy p:last-child {
+  margin-bottom: 0;
 }
 
 .profile-links {
@@ -771,10 +775,14 @@ footer {
 }
 
 @media (max-width: 460px) {
+  .bio {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 22px;
+  }
+
   .profile-photo {
-    float: none;
     width: min(212px, 70%);
-    margin: 0 0 22px;
+    margin: 0;
   }
 }
 

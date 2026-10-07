@@ -105,24 +105,26 @@ export default function Home() {
                 height="256"
               />
             </figure>
-            <p>
-              I am a DPhil student in Engineering Science at the University of
-              Oxford, working on trustworthy artificial intelligence for
-              healthcare. My research focuses on how people and AI systems can
-              collaborate safely and effectively in clinical decision-making.
-            </p>
-            <p>
-              I develop learning-to-defer systems that recognise when human
-              expertise is needed, including guided deferral with language
-              models and deferral to previously unseen experts.
-            </p>
-            <p>
-              Before starting my DPhil, I worked as a data scientist across NHS
-              England and an NHS trust. At NHS England, I contributed to a
-              Bayesian hierarchical early warning system for national COVID
-              metrics and worked on machine learning products from large-scale
-              data preparation through production deployment.
-            </p>
+            <div className="bio-copy">
+              <p>
+                I am a DPhil student in Engineering Science at the University
+                of Oxford, working on trustworthy artificial intelligence for
+                healthcare. My research focuses on how people and AI systems can
+                collaborate safely and effectively in clinical decision-making.
+              </p>
+              <p>
+                I develop learning-to-defer systems that recognise when human
+                expertise is needed, including guided deferral with language
+                models and deferral to previously unseen experts.
+              </p>
+              <p>
+                Before starting my DPhil, I worked as a data scientist across
+                NHS England and an NHS trust. At NHS England, I contributed to
+                a Bayesian hierarchical early warning system for national COVID
+                metrics and worked on machine learning products from large-scale
+                data preparation through production deployment.
+              </p>
+            </div>
           </div>
           <div className="profile-links" aria-label="External links">
             <a href="https://scholar.google.co.uk/citations?user=vFoP8mIAAAAJ&hl=en">
