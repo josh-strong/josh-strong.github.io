@@ -124,15 +124,15 @@ export function L2DIntroPost() {
         <Latex display>
           {"\\begin{aligned}\n" +
             "\\psi_{\\mathrm{OvA}}(g_1,\\ldots,g_K,g_\\perp;\\,x,y,m)\n" +
-            "&= \\phi\\!\\left(g_y(x)\\right)\n" +
+            "&= \\underbrace{\\phi\\!\\left(g_y(x)\\right)\n" +
             "+ \\sum_{\\substack{y'\\in\\mathcal{Y}\\\\y'\\neq y}}\n" +
-            "  \\phi\\!\\left(-g_{y'}(x)\\right) \\\\\n" +
-            "&\\quad + \\phi\\!\\left(-g_\\perp(x)\\right)\n" +
+            "  \\phi\\!\\left(-g_{y'}(x)\\right)}_{\\text{class-prediction loss}} \\\\\n" +
+            "&\\quad + \\underbrace{\\phi\\!\\left(-g_\\perp(x)\\right)\n" +
             "+ \\mathbb{I}[m=y]\\!\n" +
             "  \\left[\n" +
             "    \\phi\\!\\left(g_\\perp(x)\\right)\n" +
             "    - \\phi\\!\\left(-g_\\perp(x)\\right)\n" +
-            "  \\right].\n" +
+            "  \\right]}_{\\text{expert-correctness loss}}.\n" +
             "\\end{aligned}"}
         </Latex>
         <p>
@@ -158,9 +158,9 @@ export function L2DIntroPost() {
         <Latex display>
           {"\\begin{aligned}\n" +
             "\\mathcal{L}_{\\mathrm{binary}}\n" +
-            "={}&\\operatorname{BCELogit}\\!\\left(g_0,\\mathbb{I}[y=0]\\right)\n" +
-            "+\\operatorname{BCELogit}\\!\\left(g_1,\\mathbb{I}[y=1]\\right) \\\\\n" +
-            "&+\\operatorname{BCELogit}\\!\\left(g_\\perp,\\mathbb{I}[m=y]\\right).\n" +
+            "={}&\\underbrace{\\operatorname{BCELogit}\\!\\left(g_0,\\mathbb{I}[y=0]\\right)\n" +
+            "+\\operatorname{BCELogit}\\!\\left(g_1,\\mathbb{I}[y=1]\\right)}_{\\text{absent and present targets}} \\\\\n" +
+            "&+\\underbrace{\\operatorname{BCELogit}\\!\\left(g_\\perp,\\mathbb{I}[m=y]\\right)}_{\\text{expert-correctness target}}.\n" +
             "\\end{aligned}"}
         </Latex>
         <p>The three targets can be read directly as:</p>
