@@ -121,7 +121,10 @@ test("renders a blog index and individual publication notes", async () => {
 
   assert.match(indexHtml, /<title>Blogs \| Joshua Strong<\/title>/i);
   assert.match(indexHtml, /<h1>Blogs<\/h1>/i);
-  assert.match(indexHtml, /Learning to defer: OvA versus calibrated confidence/i);
+  assert.match(
+    indexHtml,
+    /Learning to defer in practice: A retrospective example with real chest X-rays and human annotations/i,
+  );
   assert.match(indexHtml, /Behind the papers/i);
   assert.match(indexHtml, /\/blog\/coherent-hierarchical-learning-to-defer/);
   assert.match(indexHtml, /\/blog\/guided-deferral-with-language-models/);
@@ -132,7 +135,12 @@ test("renders a blog index and individual publication notes", async () => {
   assert.equal(introResponse.status, 200);
   const introHtml = await introResponse.text();
 
-  assert.match(introHtml, /Learning to defer: OvA versus calibrated confidence/i);
+  assert.match(
+    introHtml,
+    /Learning to defer in practice: A retrospective example with real chest X-rays and human annotations/i,
+  );
+  assert.match(introHtml, /What this example demonstrates/i);
+  assert.match(introHtml, /How deferral helps/i);
   assert.match(introHtml, /The one-vs-all deferral loss/i);
   assert.match(introHtml, /class="code-block"/);
   assert.match(introHtml, /l2d-ova-vs-confidence\.png/);
@@ -140,6 +148,11 @@ test("renders a blog index and individual publication notes", async () => {
   assert.match(introHtml, /doi\.org\/10\.1038\/s41597-022-01498-w/);
   assert.match(introHtml, /0\.8707/);
   assert.match(introHtml, /0\.8543/);
+  assert.match(introHtml, /<h2>Limitations<\/h2>/i);
+  assert.match(introHtml, /agreement between only two/i);
+  assert.match(introHtml, /coherent-hierarchical-learning-to-defer/);
+  assert.match(introHtml, /single, fixed expert/i);
+  assert.match(introHtml, /prospective clinical evaluation/i);
   assert.doesNotMatch(introHtml, /CE-L2D/);
 
   const postResponse = await render(
@@ -163,4 +176,5 @@ test("styles the notebook-based learning-to-defer article", async () => {
   assert.match(css, /\.loss-table\s*\{/);
   assert.match(css, /\.experiment-figure img\s*\{/);
   assert.match(css, /\.method-note\s*\{/);
+  assert.match(css, /\.post-limitations\s*\{/);
 });

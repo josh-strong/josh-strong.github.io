@@ -2,20 +2,21 @@ export function L2DIntroPost() {
   return (
     <div className="blog-post-body notebook-post">
       <section>
-        <h2>The question</h2>
+        <h2>What this example demonstrates</h2>
         <p>
-          A conventional classifier always returns an answer. A learning-to-defer
-          system gets another option: pass a decision to a person when that person
-          is more likely to be right. The important comparison is therefore not
-          simply “is the model uncertain?” but “is the available expert more
-          likely to be correct than the model on this case?”
+          Imagine a model reviewing a chest X-ray for several possible findings.
+          It can answer every question itself, or it can pass selected decisions
+          to a radiologist. The useful system is not necessarily the one that
+          automates the most. It is the one that gives each decision to whoever is
+          more likely to get it right.
         </p>
         <p>
-          This experiment compares two ways to rank cases for deferral. The first
-          is a calibrated-confidence baseline, which sends the model&apos;s least
-          confident findings to a radiologist. The second is one-vs-all learning
-          to defer (OvA-L2D), which explicitly learns both class correctness and
-          expert correctness.
+          This retrospective experiment uses real chest X-rays and real human
+          annotations to make that idea concrete. I compare a familiar baseline—
+          send the model&apos;s least confident findings to a radiologist—with
+          one-vs-all learning to defer (OvA-L2D). OvA learns something more useful
+          than uncertainty alone: how likely the model and the available expert
+          are to be correct on each decision.
         </p>
       </section>
 
@@ -31,9 +32,8 @@ export function L2DIntroPost() {
         </p>
         <p>
           I retain 17 findings with sufficient training support and split the data
-          into 3,701 training, 1,209 validation, and 1,215 test images. This is an
-          annotation reference, not adjudicated clinical truth. A deferral applies
-          to one finding on one X-ray—not necessarily the entire image.
+          into 3,701 training, 1,209 validation, and 1,215 test images. A deferral
+          applies to one finding on one X-ray—not necessarily the entire image.
         </p>
         <div className="post-facts" aria-label="Experiment summary">
           <div><strong>6,125</strong><span>R9-annotated images</span></div>
@@ -143,7 +143,7 @@ export function L2DIntroPost() {
       </section>
 
       <section>
-        <h2>How the two methods decide what to defer</h2>
+        <h2>Two ways to decide when to ask a human</h2>
         <p>
           OvA turns each logit into an independent probability q = σ(g). The
           machine&apos;s predicted class is the larger of g<sub>0</sub> and g<sub>1</sub>.
@@ -169,7 +169,7 @@ export function L2DIntroPost() {
       </section>
 
       <section>
-        <h2>What happened?</h2>
+        <h2>How deferral helps</h2>
         <figure className="experiment-figure">
           <img
             src="/l2d-ova-vs-confidence.png"
@@ -185,17 +185,18 @@ export function L2DIntroPost() {
         <p>
           At 0%, each method uses all of its own predictions. At 100%, every
           finding is sent to the same expert, so the curves meet. Between those
-          endpoints, OvA produces the better routing curve in this run. Its
-          normalized F1 area under the curve is 0.8707, compared with 0.8543 for
-          calibrated confidence.
+          endpoints, system performance initially improves as useful cases are
+          handed to R9. OvA produces the better routing curve in this run because
+          its ranking can account for where the radiologist is likely to help—not
+          merely where the model is unsure. Its normalized F1 area under the curve
+          is 0.8707, compared with 0.8543 for calibrated confidence.
         </p>
-        <aside className="method-note">
-          <strong>How to read this result.</strong> The area integrates system F1
-          across deferral budgets; it is not ROC AUC. Neither training objective
-          directly optimises F1. This is a single-seed, matched experiment, so it
-          illustrates the routing behaviour rather than establishing statistical
-          superiority.
-        </aside>
+        <p>
+          That is the practical promise of learning to defer: a handover policy
+          can improve the combined human–AI system without assuming that either
+          participant is always better. It learns a division of work from their
+          complementary patterns of success and failure.
+        </p>
       </section>
 
       <section className="post-references">
@@ -212,6 +213,47 @@ export function L2DIntroPost() {
             <a href="https://doi.org/10.1038/s41597-022-01498-w">Paper</a>
           </li>
         </ol>
+      </section>
+
+      <section className="post-limitations">
+        <h2>Limitations</h2>
+        <p>
+          This is a useful demonstration, not a prospective clinical evaluation.
+          Several limitations matter when interpreting it:
+        </p>
+        <ul className="limitations-list">
+          <li>
+            The experimental “ground truth” is agreement between only two
+            clinicians, with ties counted as absent. It is an annotation reference,
+            not an adjudicated diagnosis or patient-level clinical truth.
+          </li>
+          <li>
+            Each of the 17 findings is deferred independently. Related findings
+            can therefore be handed over in logically inconsistent ways—for
+            example, predicting a specific child finding while deferring its
+            implied parent. This is the problem we tackle in our next NeurIPS
+            paper,{" "}
+            <a href="/blog/coherent-hierarchical-learning-to-defer">
+              Coherent Hierarchical Multi-Label Learning to Defer
+            </a>.
+          </li>
+          <li>
+            R9 is a single, fixed expert observed during training. A deployed
+            system would encounter clinicians with different expertise, workloads,
+            and availability, including people it had never seen before.
+          </li>
+          <li>
+            The analysis is retrospective. It does not measure how deferral would
+            change a clinical workflow, turnaround time, radiologist behaviour, or
+            patient outcomes.
+          </li>
+          <li>
+            The comparison uses one matched training seed and a pooled binary
+            macro-F1 summary. The area integrates F1 across deferral budgets; it is
+            not ROC AUC, and it should not be read as evidence of statistical
+            superiority.
+          </li>
+        </ul>
       </section>
     </div>
   );

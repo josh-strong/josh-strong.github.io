@@ -18,9 +18,10 @@ export type BlogPost = {
 export const blogPosts: BlogPost[] = [
   {
     slug: "introduction-to-learning-to-defer",
-    title: "Learning to defer: OvA versus calibrated confidence",
+    title:
+      "Learning to defer in practice: A retrospective example with real chest X-rays and human annotations",
     description:
-      "A notebook-based walkthrough of how one-vs-all learning to defer models expert correctness—and why that differs from deferring on uncertainty alone.",
+      "A concrete demonstration of how learning to defer can route individual chest X-ray findings between an AI model and a radiologist.",
     label: "Primer",
     year: "2026",
     readTime: "9 min read",
