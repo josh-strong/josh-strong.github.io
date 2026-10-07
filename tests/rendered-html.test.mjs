@@ -170,6 +170,8 @@ test("renders a blog index and individual publication notes", async () => {
     /openaccess\.thecvf\.com\/content_cvpr_2016\/html\/He_Deep_Residual_Learning_CVPR_2016_paper\.html/,
   );
   assert.match(introHtml, /doi\.org\/10\.1038\/s41597-022-01498-w/);
+  assert.doesNotMatch(introHtml, /class="post-facts"|Experiment summary/);
+  assert.doesNotMatch(introHtml, /R9-annotated images|held-out test images/);
   assert.match(introHtml, /0\.8707/);
   assert.match(introHtml, /0\.8543/);
   assert.match(introHtml, /0\.8402/);
@@ -196,7 +198,7 @@ test("renders a blog index and individual publication notes", async () => {
 test("styles the notebook-based learning-to-defer article", async () => {
   const css = await readFile(new URL("../app/globals.css", import.meta.url), "utf8");
 
-  assert.match(css, /\.post-facts\s*\{/);
+  assert.doesNotMatch(css, /\.post-facts\s*\{/);
   assert.match(css, /\.code-block\s*\{/);
   assert.match(css, /\.code-token-comment\s*\{/);
   assert.match(css, /\.code-token-keyword\s*\{/);

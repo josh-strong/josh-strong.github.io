@@ -39,11 +39,6 @@ export function L2DIntroPost() {
           into 3,701 training, 1,209 validation, and 1,215 test images. A deferral
           applies to one finding on one X-ray—not necessarily the entire image.
         </p>
-        <div className="post-facts" aria-label="Experiment summary">
-          <div><strong>6,125</strong><span>R9-annotated images</span></div>
-          <div><strong>17</strong><span>chest X-ray findings</span></div>
-          <div><strong>1,215</strong><span>held-out test images</span></div>
-        </div>
       </section>
 
       <section>

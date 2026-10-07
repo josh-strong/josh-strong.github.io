@@ -657,38 +657,6 @@ p {
   margin-top: 44px;
 }
 
-.post-facts {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 1px;
-  margin: 28px 0 0;
-  border: 1px solid var(--line);
-  background: var(--line);
-}
-
-.post-facts > div {
-  min-width: 0;
-  padding: 18px;
-  background: var(--surface);
-}
-
-.post-facts strong,
-.post-facts span {
-  display: block;
-}
-
-.post-facts strong {
-  font-size: 26px;
-  line-height: 1.15;
-}
-
-.post-facts span {
-  margin-top: 5px;
-  color: var(--muted);
-  font-size: 13px;
-  line-height: 1.35;
-}
-
 .code-block {
   margin: 22px 0;
   padding: 20px;
@@ -982,10 +950,6 @@ footer {
   .paper-callout {
     align-items: flex-start;
     flex-direction: column;
-  }
-
-  .post-facts {
-    grid-template-columns: minmax(0, 1fr);
   }
 
   .loss-row {
