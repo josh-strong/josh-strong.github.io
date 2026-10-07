@@ -163,6 +163,11 @@ test("renders a blog index and individual publication notes", async () => {
   assert.match(introHtml, /l2d-ova-vs-confidence-random\.png/);
   assert.match(introHtml, /200 independent random orderings/i);
   assert.match(introHtml, /same classifier/i);
+  assert.match(introHtml, /Where OvA fits historically/);
+  assert.match(introHtml, /Consistent Estimators for Learning to Defer to an Expert/);
+  assert.match(introHtml, /proceedings\.mlr\.press\/v119\/mozannar20b\.html/);
+  assert.match(introHtml, /not calibrated with respect to expert correctness/i);
+  assert.match(introHtml, /preserve it while making/i);
   assert.match(introHtml, /proceedings\.mlr\.press\/v162\/verma22c\.html/);
   assert.match(introHtml, /Deep Residual Learning for Image Recognition/);
   assert.match(

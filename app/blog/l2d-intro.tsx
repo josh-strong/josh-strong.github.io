@@ -113,6 +113,33 @@ export function L2DIntroPost() {
 
       <section>
         <h2>The one-vs-all deferral loss</h2>
+        <h3>Where OvA fits historically</h3>
+        <p>
+          OvA was not the first consistent surrogate proposed for learning to
+          defer. That earlier milestone came from{" "}
+          <a href="https://proceedings.mlr.press/v119/mozannar20b.html">
+            Mozannar and Sontag (2020)
+          </a>.
+          They introduced a cost-sensitive reduction with a generalised
+          cross-entropy loss that jointly learns a classifier and a rejector from
+          examples of an expert&apos;s decisions. Their construction is consistent:
+          with enough data and a sufficiently rich model, minimising the surrogate
+          recovers the decision rule that minimises the combined machine–expert
+          system&apos;s risk.
+        </p>
+        <p>
+          Verma and Nalisnick&apos;s 2022 OvA paper addressed a different issue.
+          They showed that the earlier softmax formulation is not calibrated with
+          respect to expert correctness; its parameterisation can even turn the
+          derived expert-correctness score into something greater than one. OvA
+          replaces that coupled softmax with independent binary problems for each
+          class and for whether the expert is correct. The resulting sigmoid
+          outputs can be interpreted as calibrated probabilities, while the loss
+          remains a consistent surrogate for multiclass learning to defer. The
+          point of OvA was therefore not to introduce consistency for the first
+          time, but to preserve it while making the model&apos;s class and expert
+          confidence estimates probabilistically meaningful.
+        </p>
         <p>
           I use the notation from Verma and Nalisnick&apos;s paper first. Let{" "}
           <Latex>{"\\mathcal{Y}=\\{1,\\ldots,K\\}"}</Latex> be the class set,{" "}
@@ -331,6 +358,11 @@ export function L2DIntroPost() {
             <a href="https://openaccess.thecvf.com/content_cvpr_2016/html/He_Deep_Residual_Learning_CVPR_2016_paper.html">
               Paper
             </a>
+          </li>
+          <li>
+            H. Mozannar and D. Sontag. “Consistent Estimators for Learning to
+            Defer to an Expert.” <em>Proceedings of ICML</em>, 2020.{" "}
+            <a href="https://proceedings.mlr.press/v119/mozannar20b.html">Paper</a>
           </li>
           <li>
             R. Verma and E. Nalisnick. “Calibrated Learning to Defer with
