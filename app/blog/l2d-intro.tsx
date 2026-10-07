@@ -138,7 +138,8 @@ export function L2DIntroPost() {
           remains a consistent surrogate for multiclass learning to defer. The
           point of OvA was therefore not to introduce consistency for the first
           time, but to preserve it while making the model&apos;s class and expert
-          confidence estimates probabilistically meaningful.
+          confidence estimates probabilistically meaningful. For those reasons,
+          the OvA loss is a personal favourite of mine.
         </p>
         <p>
           I use the notation from Verma and Nalisnick&apos;s paper first. Let{" "}
