@@ -64,7 +64,7 @@ const researchAreas = [
   {
     number: "03",
     title: "Applied clinical data science",
-    text: "My work is grounded in practical healthcare settings, including experience building and deploying national-scale forecasting systems at NHS England.",
+    text: "My work is grounded in practical healthcare settings, including experience working on national-scale forecasting systems and machine learning deployment at NHS England.",
   },
 ];
 
@@ -134,10 +134,11 @@ export default function Home() {
               models and deferral to previously unseen experts.
             </p>
             <p>
-              Before starting my DPhil, I was a Data Scientist at NHS England,
-              where I built a Bayesian hierarchical early warning system for
-              national COVID metrics and took machine learning products from
-              large-scale data preparation through production deployment.
+              Before starting my DPhil, I worked as a data scientist across NHS
+              England and an NHS trust. At NHS England, I contributed to a
+              Bayesian hierarchical early warning system for national COVID
+              metrics and worked on machine learning products from large-scale
+              data preparation through production deployment.
             </p>
           </div>
           <div className="profile-links" aria-label="External links">
@@ -219,10 +220,10 @@ export default function Home() {
               </div>
               <time>2020–2022</time>
               <p className="cv-detail">
-                Built a Bayesian hierarchical early warning system for national
-                COVID forecasting, led machine learning products from data
-                preparation to deployment, and mentored junior analysts and MSc
-                researchers.
+                Worked on a Bayesian hierarchical early warning system for
+                national COVID forecasting, contributed to machine learning
+                products from data preparation to deployment, and mentored
+                junior analysts and MSc researchers.
               </p>
             </article>
           </div>

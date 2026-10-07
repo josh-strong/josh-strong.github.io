@@ -69,6 +69,9 @@ test("server-renders Joshua Strong's academic website", async () => {
   assert.doesNotMatch(html, /joshua\.strong@eng\.ox\.ac\.uk|mailto:/i);
   assert.doesNotMatch(html, /Ranked second in cohort/i);
   assert.match(html, /Please feel free to get in touch via/);
+  assert.match(html, /worked as a data scientist across NHS England and an NHS trust/i);
+  assert.match(html, /contributed to a Bayesian hierarchical early warning system/i);
+  assert.doesNotMatch(html, /built a Bayesian hierarchical early warning system/i);
   assert.match(html, /content="http:\/\/localhost(?::3000)?\/og-dark\.png"/);
   assert.doesNotMatch(html, /codex-preview|Building your site/);
 });
