@@ -147,7 +147,12 @@ test("renders a blog index and individual publication notes", async () => {
   assert.match(introHtml, /ψ/);
   assert.match(introHtml, /BCELogit/);
   assert.match(introHtml, /hard rejector/i);
-  assert.match(introHtml, /class="code-block"/);
+  assert.match(introHtml, /class="code-block/);
+  assert.match(introHtml, /class="code-block python-code"/);
+  assert.match(introHtml, /class="code-token-comment"/);
+  assert.match(introHtml, /class="code-token-keyword"/);
+  assert.match(introHtml, /class="code-token-function"/);
+  assert.match(introHtml, /class="code-token-number"/);
   assert.match(introHtml, /Keep the image features; discard ResNet&#x27;s original classifier/);
   assert.match(introHtml, /The defer logit learns when this expert is correct/);
   assert.match(introHtml, /Output shape: \[batch, findings, 3\]/);
@@ -189,6 +194,10 @@ test("styles the notebook-based learning-to-defer article", async () => {
 
   assert.match(css, /\.post-facts\s*\{/);
   assert.match(css, /\.code-block\s*\{/);
+  assert.match(css, /\.code-token-comment\s*\{/);
+  assert.match(css, /\.code-token-keyword\s*\{/);
+  assert.match(css, /\.code-token-function\s*\{/);
+  assert.match(css, /\.code-token-string\s*\{/);
   assert.match(css, /\.loss-table\s*\{/);
   assert.match(css, /\.latex-display\s*\{/);
   assert.match(css, /\.latex-display \.katex-display\s*\{/);

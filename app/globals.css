@@ -704,6 +704,37 @@ p {
   tab-size: 4;
 }
 
+.python-code {
+  color: #dcdfe4;
+}
+
+.code-line {
+  display: inline;
+}
+
+.code-token-comment {
+  color: #7fa66a;
+  font-style: italic;
+}
+
+.code-token-keyword {
+  color: #c792ea;
+  font-weight: 600;
+}
+
+.code-token-function {
+  color: #82aaff;
+}
+
+.code-token-string {
+  color: #9ccc65;
+}
+
+.code-token-literal,
+.code-token-number {
+  color: #f3a96a;
+}
+
 .loss-table {
   margin: 22px 0;
   overflow: hidden;

@@ -1,4 +1,5 @@
 import { Latex } from "../latex";
+import { PythonCodeBlock } from "../python-code";
 
 export function L2DIntroPost() {
   return (
@@ -81,8 +82,9 @@ export function L2DIntroPost() {
             <Latex>{"\\ell"}</Latex> findings.
           </figcaption>
         </figure>
-        <pre className="code-block" aria-label="Simplified PyTorch model">
-          <code>{`class L2DModel(nn.Module):
+        <PythonCodeBlock
+          label="Simplified PyTorch model"
+          code={`class L2DModel(nn.Module):
     def __init__(self, n_findings=17):
         super().__init__()
         # Keep the image features; discard ResNet's original classifier.
@@ -103,8 +105,8 @@ export function L2DIntroPost() {
     def forward(self, images):
         h = self.shared(self.encoder(images))
         # Output shape: [batch, findings, 3].
-        return torch.stack([head(h) for head in self.heads], dim=1)`}</code>
-        </pre>
+        return torch.stack([head(h) for head in self.heads], dim=1)`}
+        />
         <p>
           The three outputs are not a softmax over mutually exclusive actions.
           OvA treats them as independent binary questions, each transformed by a
@@ -196,8 +198,9 @@ export function L2DIntroPost() {
           scaling does not change the minimiser. A numerically stable PyTorch
           version is:
         </p>
-        <pre className="code-block" aria-label="Simplified one-vs-all loss in PyTorch">
-          <code>{`def ova_loss(logits, y, expert):
+        <PythonCodeBlock
+          label="Simplified one-vs-all loss in PyTorch"
+          code={`def ova_loss(logits, y, expert):
     # Targets for the absent and present logits.
     class_targets = F.one_hot(y.long(), num_classes=2).float()
 
@@ -212,8 +215,8 @@ export function L2DIntroPost() {
     )
 
     # Sum the three OvA terms and report the batch mean in bits.
-    return (class_loss + defer_loss).mean() / math.log(2)`}</code>
-        </pre>
+    return (class_loss + defer_loss).mean() / math.log(2)`}
+        />
         <p>
           This loss comes from{" "}
           <a href="https://proceedings.mlr.press/v162/verma22c.html">
