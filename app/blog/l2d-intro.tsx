@@ -47,11 +47,14 @@ export function L2DIntroPost() {
       <section>
         <h2>The model</h2>
         <p>
-          Both methods start from the same randomly initialised ResNet-18. Its
-          image representation passes through a shared 256-unit layer, followed
-          by one head per finding. The confidence baseline emits one binary logit
-          per finding. OvA emits three: <em>absent</em>, <em>present</em>, and{" "}
-          <em>defer</em>. The encoder and every head are trained end to end.
+          Both methods start from the same randomly initialised {" "}
+          <a href="https://openaccess.thecvf.com/content_cvpr_2016/html/He_Deep_Residual_Learning_CVPR_2016_paper.html">
+            ResNet-18
+          </a>. Its image representation passes through a shared 256-unit layer,
+          followed by one head per finding. The confidence baseline emits one
+          binary logit per finding. OvA emits three: <em>absent</em>, {" "}
+          <em>present</em>, and <em>defer</em>. The encoder and every head are
+          trained end to end.
         </p>
         <p>
           The multi-label architecture below shows that structure explicitly.
@@ -82,18 +85,24 @@ export function L2DIntroPost() {
           <code>{`class L2DModel(nn.Module):
     def __init__(self, n_findings=17):
         super().__init__()
+        # Keep the image features; discard ResNet's original classifier.
         self.encoder = resnet18(weights=None)
         self.encoder.fc = nn.Identity()
+
+        # Compress the shared representation before branching by finding.
         self.shared = nn.Sequential(
             nn.Linear(512, 256), nn.ReLU(),
             nn.Dropout(0.1), nn.LayerNorm(256)
         )
+
+        # Each head emits: absent, present, and defer.
         self.heads = nn.ModuleList([
             nn.Linear(256, 3) for _ in range(n_findings)
         ])
 
     def forward(self, images):
         h = self.shared(self.encoder(images))
+        # Output shape: [batch, findings, 3].
         return torch.stack([head(h) for head in self.heads], dim=1)`}</code>
         </pre>
         <p>
@@ -189,7 +198,10 @@ export function L2DIntroPost() {
         </p>
         <pre className="code-block" aria-label="Simplified one-vs-all loss in PyTorch">
           <code>{`def ova_loss(logits, y, expert):
+    # Targets for the absent and present logits.
     class_targets = F.one_hot(y.long(), num_classes=2).float()
+
+    # The defer logit learns when this expert is correct.
     expert_correct = (expert == y).float()
 
     class_loss = F.binary_cross_entropy_with_logits(
@@ -198,6 +210,8 @@ export function L2DIntroPost() {
     defer_loss = F.binary_cross_entropy_with_logits(
         logits[..., 2], expert_correct, reduction="none"
     )
+
+    # Sum the three OvA terms and report the batch mean in bits.
     return (class_loss + defer_loss).mean() / math.log(2)`}</code>
         </pre>
         <p>
@@ -296,6 +310,13 @@ export function L2DIntroPost() {
       <section className="post-references">
         <h2>References</h2>
         <ol>
+          <li>
+            K. He, X. Zhang, S. Ren, and J. Sun. “Deep Residual Learning for
+            Image Recognition.” <em>Proceedings of CVPR</em>, 2016. {" "}
+            <a href="https://openaccess.thecvf.com/content_cvpr_2016/html/He_Deep_Residual_Learning_CVPR_2016_paper.html">
+              Paper
+            </a>
+          </li>
           <li>
             R. Verma and E. Nalisnick. “Calibrated Learning to Defer with
             One-vs-All Classifiers.” <em>Proceedings of ICML</em>, 2022.{" "}

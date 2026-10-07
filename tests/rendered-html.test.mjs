@@ -148,11 +148,19 @@ test("renders a blog index and individual publication notes", async () => {
   assert.match(introHtml, /BCELogit/);
   assert.match(introHtml, /hard rejector/i);
   assert.match(introHtml, /class="code-block"/);
+  assert.match(introHtml, /Keep the image features; discard ResNet&#x27;s original classifier/);
+  assert.match(introHtml, /The defer logit learns when this expert is correct/);
+  assert.match(introHtml, /Output shape: \[batch, findings, 3\]/);
   assert.match(introHtml, /multilabel-l2d-architecture\.png/);
   assert.match(introHtml, /Multi-label OvA-L2D architecture/i);
   assert.match(introHtml, /class="architecture-figure"/);
   assert.match(introHtml, /l2d-ova-vs-confidence\.png/);
   assert.match(introHtml, /proceedings\.mlr\.press\/v162\/verma22c\.html/);
+  assert.match(introHtml, /Deep Residual Learning for Image Recognition/);
+  assert.match(
+    introHtml,
+    /openaccess\.thecvf\.com\/content_cvpr_2016\/html\/He_Deep_Residual_Learning_CVPR_2016_paper\.html/,
+  );
   assert.match(introHtml, /doi\.org\/10\.1038\/s41597-022-01498-w/);
   assert.match(introHtml, /0\.8707/);
   assert.match(introHtml, /0\.8543/);
