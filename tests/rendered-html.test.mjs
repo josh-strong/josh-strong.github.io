@@ -197,7 +197,11 @@ test("renders a blog index and individual publication notes", async () => {
   const postHtml = await postResponse.text();
 
   assert.match(postHtml, /<h1>Deferring to experts the model has never met<\/h1>/i);
-  assert.match(postHtml, /Removing the identity shortcut/i);
+  assert.match(postHtml, /A competence profile, not an identity/i);
+  assert.match(postHtml, /ifd-expert-shift\.png/i);
+  assert.match(postHtml, /ifd-context-scaling\.png/i);
+  assert.match(postHtml, /class="katex"/i);
+  assert.match(postHtml, /Annotation efficiency matters/i);
   assert.match(postHtml, /Read the ICLR paper/i);
   assert.match(postHtml, /proceedings\.iclr\.cc/);
   assert.match(postHtml, /href="\/blog"[^>]*>Blogs<\/a>/);
@@ -219,6 +223,40 @@ test("renders a blog index and individual publication notes", async () => {
   assert.match(chl2dHtml, /chl2d-system-f1\.png/i);
   assert.match(chl2dHtml, /chl2d-incoherence-rate\.png/i);
   assert.match(chl2dHtml, /Read the paper on arXiv/i);
+
+  const surveyResponse = await render("/blog/learning-to-defer-a-survey");
+  assert.equal(surveyResponse.status, 200);
+  const surveyHtml = await surveyResponse.text();
+  assert.match(surveyHtml, /Four branches, one decision problem/i);
+  assert.match(surveyHtml, /l2d-survey-taxonomy\.png/i);
+  assert.match(surveyHtml, /One-stage learning/i);
+  assert.match(surveyHtml, /Two-stage learning/i);
+  assert.match(surveyHtml, /Post-hoc fine-tuning/i);
+  assert.match(surveyHtml, /Before choosing a loss/i);
+
+  const reviewResponse = await render(
+    "/blog/human-ai-collaboration-in-healthcare",
+  );
+  assert.equal(reviewResponse.status, 200);
+  const reviewHtml = await reviewResponse.text();
+  assert.match(reviewHtml, /The evidence is about teams, not tools/i);
+  assert.match(reviewHtml, /17,463/);
+  assert.match(reviewHtml, /haic-study-map\.png/i);
+  assert.match(reviewHtml, /haic-trust-evidence\.png/i);
+  assert.match(reviewHtml, /Trust is not the same as reliance/i);
+  assert.match(reviewHtml, /Human oversight is not a safety property/i);
+
+  const guidedResponse = await render(
+    "/blog/guided-deferral-with-language-models",
+  );
+  assert.equal(guidedResponse.status, 200);
+  const guidedHtml = await guidedResponse.text();
+  assert.match(guidedHtml, /A handover should carry something useful/i);
+  assert.match(guidedHtml, /guided-deferral-system\.png/i);
+  assert.match(guidedHtml, /guided-pilot-result\.png/i);
+  assert.match(guidedHtml, /Calibration under imbalance/i);
+  assert.match(guidedHtml, /20 \/ 20/);
+  assert.match(guidedHtml, /What this does—and does not—show/i);
 });
 
 test("styles the notebook-based learning-to-defer article", async () => {
@@ -240,4 +278,9 @@ test("styles the notebook-based learning-to-defer article", async () => {
   assert.match(css, /\.post-limitations\s*\{/);
   assert.match(css, /\.coherence-cards\s*\{/);
   assert.match(css, /\.method-comparison\s*\{/);
+  assert.match(css, /\.paper-figure\s*\{/);
+  assert.match(css, /\.branch-grid/);
+  assert.match(css, /\.evidence-stats/);
+  assert.match(css, /\.identity-contrast/);
+  assert.match(css, /\.prediction-sources/);
 });

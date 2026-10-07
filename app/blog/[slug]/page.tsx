@@ -4,6 +4,12 @@ import { notFound } from "next/navigation";
 import { SiteHeader } from "../../site-header";
 import { CHL2DPost } from "../chl2d-post";
 import { L2DIntroPost } from "../l2d-intro";
+import {
+  GuidedDeferralPost,
+  HealthcareReviewPost,
+  IdentityFreePost,
+  L2DSurveyPost,
+} from "../paper-posts";
 import { blogPosts, getBlogPost } from "../posts";
 
 type BlogPostPageProps = {
@@ -61,6 +67,14 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             <L2DIntroPost />
           ) : post.slug === "coherent-hierarchical-learning-to-defer" ? (
             <CHL2DPost />
+          ) : post.slug === "learning-to-defer-a-survey" ? (
+            <L2DSurveyPost />
+          ) : post.slug === "human-ai-collaboration-in-healthcare" ? (
+            <HealthcareReviewPost />
+          ) : post.slug === "identity-free-deferral" ? (
+            <IdentityFreePost />
+          ) : post.slug === "guided-deferral-with-language-models" ? (
+            <GuidedDeferralPost />
           ) : (
             <div className="blog-post-body">
               {post.sections.map((section) => (

@@ -90,7 +90,7 @@ export const blogPosts: BlogPost[] = [
       "A reader's guide to a fast-growing literature, from core training frameworks to the practical constraints of human–AI systems.",
     label: "Publication note",
     year: "2026",
-    readTime: "5 min read",
+    readTime: "8 min read",
     paperUrl: "https://doi.org/10.5281/zenodo.17843044",
     paperLabel: "Read the survey",
     sections: [
@@ -124,7 +124,7 @@ export const blogPosts: BlogPost[] = [
       "A scoping review of 140 empirical studies—and why team performance depends on far more than an algorithm's accuracy.",
     label: "Publication note",
     year: "2026",
-    readTime: "5 min read",
+    readTime: "7 min read",
     paperUrl: "https://www.nature.com/articles/s41746-026-02918-6",
     paperLabel: "Read the paper in npj Digital Medicine",
     sections: [
@@ -158,7 +158,7 @@ export const blogPosts: BlogPost[] = [
       "Why expert identity can become a shortcut, and how an identity-free architecture adapts from only a small context set.",
     label: "Publication note",
     year: "2026",
-    readTime: "4 min read",
+    readTime: "7 min read",
     paperUrl:
       "https://proceedings.iclr.cc/paper_files/paper/2026/hash/4cddc8fc57039f8fe44e23aba1e4df40-Abstract-Conference.html",
     paperLabel: "Read the ICLR paper",
@@ -193,7 +193,7 @@ export const blogPosts: BlogPost[] = [
       "A system that does more than say “ask a human”: it passes uncertain cases on with useful, targeted guidance.",
     label: "Publication note",
     year: "2025",
-    readTime: "4 min read",
+    readTime: "6 min read",
     paperUrl: "https://doi.org/10.1609/aaai.v39i27.35063",
     paperLabel: "Read the AAAI paper",
     sections: [
