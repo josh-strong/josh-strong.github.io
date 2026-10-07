@@ -1,4 +1,3 @@
-import Image from "next/image";
 import type { ReactNode } from "react";
 import { Latex } from "../latex";
 
@@ -20,7 +19,9 @@ function PaperFigure({
   return (
     <figure className={`paper-figure ${className}`.trim()}>
       <div className="paper-figure-frame">
-        <Image src={src} alt={alt} width={width} height={height} />
+        {/* Static paper crops are already web-sized; serve them directly. */}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src={src} alt={alt} width={width} height={height} />
       </div>
       <figcaption>{children}</figcaption>
     </figure>
