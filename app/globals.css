@@ -822,56 +822,151 @@ p {
 }
 
 .coherence-card {
+  position: relative;
   min-width: 0;
-  padding: 18px 16px;
+  overflow: hidden;
   border: 1px solid var(--line);
-  border-top: 4px solid var(--text);
   background: var(--surface);
 }
 
-.coherence-card-taxonomy {
-  border-top-color: #be3d36;
-}
-
-.coherence-card-delegation {
-  border-top-color: #3976a8;
-}
-
-.coherence-card-deductive {
-  border-top-color: #9b6b22;
-}
-
-.coherence-tree {
-  display: grid;
-  grid-template-columns: 1fr 20px 1fr;
-  align-items: center;
-  margin-bottom: 15px;
-}
-
-.coherence-tree span {
+.coherence-diagram {
   display: flex;
   align-items: center;
-  justify-content: center;
   flex-direction: column;
-  min-height: 54px;
-  border: 1px solid var(--line);
-  border-radius: 50%;
-  background: var(--background);
-  font-size: 20px;
-  font-weight: 700;
+  padding: 22px 18px 19px;
+  border-bottom: 1px solid var(--line);
+  background:
+    radial-gradient(circle at 50% 0, rgba(96, 110, 124, 0.09), transparent 67%),
+    var(--background);
 }
 
-.coherence-tree small {
+.coherence-node {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 9px 10px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--surface);
+  box-shadow: 0 3px 12px rgba(20, 24, 28, 0.04);
+}
+
+.coherence-node > span {
   color: var(--faint);
-  font-size: 10px;
-  font-weight: 400;
-  letter-spacing: 0.04em;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
 }
 
-.coherence-tree i {
-  height: 1px;
+.coherence-node strong {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 8px 4px 5px;
+  border-radius: 999px;
+  font-size: 12px;
+  line-height: 1;
+}
+
+.coherence-node strong b {
+  display: inline-grid;
+  width: 20px;
+  height: 20px;
+  place-items: center;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.72);
+  font-size: 13px;
+}
+
+.action-absent {
+  background: rgba(99, 105, 112, 0.13);
+  color: var(--muted);
+}
+
+.action-present {
+  background: rgba(48, 128, 82, 0.14);
+  color: #276c46;
+}
+
+.action-defer {
+  background: rgba(48, 106, 158, 0.14);
+  color: #285f91;
+}
+
+html[data-theme="dark"] .action-present {
+  color: #8fc9a7;
+}
+
+html[data-theme="dark"] .action-defer {
+  color: #9bc0e0;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) .action-present {
+    color: #8fc9a7;
+  }
+
+  :root:not([data-theme]) .action-defer {
+    color: #9bc0e0;
+  }
+}
+
+.coherence-edge {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 30px;
+}
+
+.coherence-edge::before,
+.coherence-edge::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  width: 1px;
+  height: 9px;
   background: var(--line);
+}
+
+.coherence-edge::before {
+  top: 0;
+}
+
+.coherence-edge::after {
+  bottom: 0;
+}
+
+.coherence-edge span {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  width: 18px;
+  height: 18px;
+  place-items: center;
+  border: 1px solid rgba(179, 77, 68, 0.25);
+  border-radius: 50%;
+  background: #f9ecea;
+  color: #a54038;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.coherence-card-copy {
+  padding: 17px 17px 19px;
+}
+
+.coherence-card-number {
+  display: block;
+  margin-bottom: 9px;
+  color: var(--faint);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
 }
 
 .coherence-card h3 {
@@ -1100,13 +1195,29 @@ footer {
 
   .coherence-card {
     display: grid;
-    grid-template-columns: 120px 1fr;
-    column-gap: 16px;
+    grid-template-columns: 138px 1fr;
   }
 
-  .coherence-tree {
-    grid-row: 1 / span 2;
-    margin: 0;
+  .coherence-diagram {
+    justify-content: center;
+    padding: 16px 12px;
+    border-right: 1px solid var(--line);
+    border-bottom: 0;
+  }
+
+  .coherence-node {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .coherence-node strong {
+    padding-right: 6px;
+  }
+
+  .coherence-card-copy {
+    align-self: center;
+    padding: 18px 16px;
   }
 
   .method-comparison {

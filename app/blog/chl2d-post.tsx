@@ -36,40 +36,67 @@ export function CHL2DPost() {
         </p>
         <div className="coherence-cards">
           <article className="coherence-card coherence-card-taxonomy">
-            <div className="coherence-tree" aria-hidden="true">
-              <span><small>Parent</small>0</span>
-              <i />
-              <span><small>Child</small>1</span>
+            <div className="coherence-diagram" aria-hidden="true">
+              <div className="coherence-node">
+                <span>Parent</span>
+                <strong className="action-absent"><b>0</b> Absent</strong>
+              </div>
+              <div className="coherence-edge"><span>×</span></div>
+              <div className="coherence-node">
+                <span>Child</span>
+                <strong className="action-present"><b>1</b> Present</strong>
+              </div>
             </div>
-            <h3>Taxonomic contradiction</h3>
-            <p>
-              The model says a parent is absent while asserting that one of its
-              children is present.
-            </p>
+            <div className="coherence-card-copy">
+              <span className="coherence-card-number">01</span>
+              <h3>Taxonomic contradiction</h3>
+              <p>
+                The model says a parent is absent while asserting that one of its
+                children is present.
+              </p>
+            </div>
           </article>
           <article className="coherence-card coherence-card-delegation">
-            <div className="coherence-tree" aria-hidden="true">
-              <span><small>Parent</small>⊥</span>
-              <i />
-              <span><small>Child</small>1</span>
+            <div className="coherence-diagram" aria-hidden="true">
+              <div className="coherence-node">
+                <span>Parent</span>
+                <strong className="action-defer"><b>⊥</b> Defer</strong>
+              </div>
+              <div className="coherence-edge"><span>×</span></div>
+              <div className="coherence-node">
+                <span>Child</span>
+                <strong className="action-present"><b>1</b> Present</strong>
+              </div>
             </div>
-            <h3>Delegation violation</h3>
-            <p>
-              The parent is handed to the reader, but a child prediction already
-              implies the parent&apos;s value.
-            </p>
+            <div className="coherence-card-copy">
+              <span className="coherence-card-number">02</span>
+              <h3>Delegation violation</h3>
+              <p>
+                The parent is handed to the reader, but a child prediction already
+                implies the parent&apos;s value.
+              </p>
+            </div>
           </article>
           <article className="coherence-card coherence-card-deductive">
-            <div className="coherence-tree" aria-hidden="true">
-              <span><small>Parent</small>0</span>
-              <i />
-              <span><small>Child</small>⊥</span>
+            <div className="coherence-diagram" aria-hidden="true">
+              <div className="coherence-node">
+                <span>Parent</span>
+                <strong className="action-absent"><b>0</b> Absent</strong>
+              </div>
+              <div className="coherence-edge"><span>×</span></div>
+              <div className="coherence-node">
+                <span>Child</span>
+                <strong className="action-defer"><b>⊥</b> Defer</strong>
+              </div>
             </div>
-            <h3>Deductive defect</h3>
-            <p>
-              The model defers a child even though its own parent assertion has
-              already forced the answer.
-            </p>
+            <div className="coherence-card-copy">
+              <span className="coherence-card-number">03</span>
+              <h3>Deductive defect</h3>
+              <p>
+                The model defers a child even though its own parent assertion has
+                already forced the answer.
+              </p>
+            </div>
           </article>
         </div>
         <p>
