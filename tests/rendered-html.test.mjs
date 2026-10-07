@@ -159,7 +159,10 @@ test("renders a blog index and individual publication notes", async () => {
   assert.match(introHtml, /multilabel-l2d-architecture\.png/);
   assert.match(introHtml, /Multi-label OvA-L2D architecture/i);
   assert.match(introHtml, /class="architecture-figure"/);
-  assert.match(introHtml, /l2d-ova-vs-confidence\.png/);
+  assert.match(introHtml, /<h2>Three ways to decide when to ask a human<\/h2>/i);
+  assert.match(introHtml, /l2d-ova-vs-confidence-random\.png/);
+  assert.match(introHtml, /200 independent random orderings/i);
+  assert.match(introHtml, /same classifier/i);
   assert.match(introHtml, /proceedings\.mlr\.press\/v162\/verma22c\.html/);
   assert.match(introHtml, /Deep Residual Learning for Image Recognition/);
   assert.match(
@@ -169,6 +172,7 @@ test("renders a blog index and individual publication notes", async () => {
   assert.match(introHtml, /doi\.org\/10\.1038\/s41597-022-01498-w/);
   assert.match(introHtml, /0\.8707/);
   assert.match(introHtml, /0\.8543/);
+  assert.match(introHtml, /0\.8402/);
   assert.match(introHtml, /<h2>Limitations<\/h2>/i);
   assert.match(introHtml, /agreement between only two/i);
   assert.match(introHtml, /coherent-hierarchical-learning-to-defer/);

@@ -17,9 +17,10 @@ export function L2DIntroPost() {
           This retrospective experiment uses real chest X-rays and real human
           annotations to make that idea concrete. I compare a familiar baseline—
           send the model&apos;s least confident findings to a radiologist—with
-          one-vs-all learning to defer (OvA-L2D). OvA learns something more useful
-          than uncertainty alone: how likely the model and the available expert
-          are to be correct on each decision.
+          one-vs-all learning to defer (OvA-L2D), and include random deferral as
+          a sanity check. OvA learns something more useful than uncertainty alone:
+          how likely the model and the available expert are to be correct on each
+          decision.
         </p>
       </section>
 
@@ -232,7 +233,7 @@ export function L2DIntroPost() {
       </section>
 
       <section>
-        <h2>Two ways to decide when to ask a human</h2>
+        <h2>Three ways to decide when to ask a human</h2>
         <p>
           The paper defines the classifier and hard rejector directly from the
           logits:
@@ -277,30 +278,47 @@ export function L2DIntroPost() {
           R9 is likely to help. That is the conceptual difference this comparison
           is designed to isolate.
         </p>
+        <p>
+          Random deferral uses that same calibrated classifier but chooses which
+          individual finding decisions to hand to R9 uniformly at random. I
+          average 200 independent random orderings (seed 1), sampled without
+          replacement, so every point still defers exactly the requested number
+          of decisions. The routing score uses no labels, confidence, or expert
+          correctness: it is a deliberately uninformed baseline.
+        </p>
       </section>
 
       <section>
         <h2>How deferral helps</h2>
         <figure className="experiment-figure">
           <img
-            src="/l2d-ova-vs-confidence.png"
-            alt="Line chart comparing OvA learning to defer with calibrated confidence across deferral budgets. OvA has the higher normalized F1 area under the curve."
+            src="/l2d-ova-vs-confidence-random.png"
+            alt="Line chart comparing OvA learning to defer, calibrated confidence, and random deferral across deferral budgets. OvA has the highest normalized F1 area under the curve, followed by calibrated confidence and random deferral."
             width="1600"
             height="1000"
           />
           <figcaption>
             Test-set system performance as individual finding decisions are
-            replaced by R9&apos;s answers. Higher is better.
+            replaced by R9&apos;s answers. Random deferral is the mean of 200
+            independent orderings. Higher is better.
           </figcaption>
         </figure>
         <p>
-          At 0%, each method uses all of its own predictions. At 100%, every
-          finding is sent to the same expert, so the curves meet. Between those
-          endpoints, system performance initially improves as useful cases are
-          handed to R9. OvA produces the better routing curve in this run because
-          its ranking can account for where the radiologist is likely to help—not
-          merely where the model is unsure. Its normalized F1 area under the curve
-          is 0.8707, compared with 0.8543 for calibrated confidence.
+          At 0%, each method uses machine predictions. Calibrated confidence and
+          random deferral begin at exactly the same point because they use the
+          same classifier. At 100%, every finding is sent to the same expert, so
+          all three curves meet. Between those endpoints, random deferral shows
+          what happens when the handovers contain no information about who is
+          likely to be right.
+        </p>
+        <p>
+          Calibrated confidence improves on random routing while holding the
+          machine fixed, which isolates the value of sending uncertain decisions
+          first. OvA produces the best routing curve in this run because its
+          ranking can also account for where the radiologist is likely to help—not
+          merely where the model is unsure. The normalized F1 areas under the
+          curve are 0.8707 for OvA-L2D, 0.8543 for calibrated confidence, and
+          0.8402 for random deferral.
         </p>
         <p>
           That is the practical promise of learning to defer: a handover policy
@@ -366,10 +384,11 @@ export function L2DIntroPost() {
             patient outcomes.
           </li>
           <li>
-            The comparison uses one matched training seed and a pooled binary
-            macro-F1 summary. The area integrates F1 across deferral budgets; it is
-            not ROC AUC, and it should not be read as evidence of statistical
-            superiority.
+            The learned models use one matched training seed, while the random
+            baseline averages 200 routing permutations. Performance is summarised
+            using pooled binary macro-F1. The area integrates F1 across deferral
+            budgets; it is not ROC AUC, and it should not be read as evidence of
+            statistical superiority.
           </li>
         </ul>
       </section>
