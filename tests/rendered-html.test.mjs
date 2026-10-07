@@ -201,6 +201,24 @@ test("renders a blog index and individual publication notes", async () => {
   assert.match(postHtml, /Read the ICLR paper/i);
   assert.match(postHtml, /proceedings\.iclr\.cc/);
   assert.match(postHtml, /href="\/blog"[^>]*>Blogs<\/a>/);
+
+  const chl2dResponse = await render(
+    "/blog/coherent-hierarchical-learning-to-defer",
+  );
+  assert.equal(chl2dResponse.status, 200);
+  const chl2dHtml = await chl2dResponse.text();
+
+  assert.match(chl2dHtml, /The handover is part of the prediction/i);
+  assert.match(chl2dHtml, /Three ways independent deferral can break/i);
+  assert.match(chl2dHtml, /Taxonomic contradiction/i);
+  assert.match(chl2dHtml, /Delegation violation/i);
+  assert.match(chl2dHtml, /Deductive defect/i);
+  assert.match(chl2dHtml, /Defining a coherent action/i);
+  assert.match(chl2dHtml, /Exact coherent projection/i);
+  assert.match(chl2dHtml, /Taxonomic Belief Propagation/i);
+  assert.match(chl2dHtml, /chl2d-system-f1\.png/i);
+  assert.match(chl2dHtml, /chl2d-incoherence-rate\.png/i);
+  assert.match(chl2dHtml, /Read the paper on arXiv/i);
 });
 
 test("styles the notebook-based learning-to-defer article", async () => {
@@ -220,4 +238,6 @@ test("styles the notebook-based learning-to-defer article", async () => {
   assert.match(css, /\.experiment-figure img\s*\{/);
   assert.match(css, /\.method-note\s*\{/);
   assert.match(css, /\.post-limitations\s*\{/);
+  assert.match(css, /\.coherence-cards\s*\{/);
+  assert.match(css, /\.method-comparison\s*\{/);
 });

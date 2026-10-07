@@ -56,7 +56,7 @@ export const blogPosts: BlogPost[] = [
       "How clinical label hierarchies turn deferral into a structured decision—and how we prevent contradictory handovers.",
     label: "Publication note",
     year: "2026",
-    readTime: "4 min read",
+    readTime: "8 min read",
     paperUrl: "https://arxiv.org/abs/2605.02734",
     paperLabel: "Read the paper on arXiv",
     sections: [

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { SiteHeader } from "../../site-header";
+import { CHL2DPost } from "../chl2d-post";
 import { L2DIntroPost } from "../l2d-intro";
 import { blogPosts, getBlogPost } from "../posts";
 
@@ -58,6 +59,8 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
           {post.slug === "introduction-to-learning-to-defer" ? (
             <L2DIntroPost />
+          ) : post.slug === "coherent-hierarchical-learning-to-defer" ? (
+            <CHL2DPost />
           ) : (
             <div className="blog-post-body">
               {post.sections.map((section) => (
