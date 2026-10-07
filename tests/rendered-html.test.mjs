@@ -186,6 +186,8 @@ test("renders a blog index and individual publication notes", async () => {
   assert.match(introHtml, /coherent-hierarchical-learning-to-defer/);
   assert.match(introHtml, /single, fixed expert/i);
   assert.match(introHtml, /prospective clinical evaluation/i);
+  assert.match(introHtml, /<h2>Conclusion<\/h2>/i);
+  assert.match(introHtml, /allocating responsibility, not/i);
   assert.doesNotMatch(introHtml, /CE-L2D/);
 
   const postResponse = await render(

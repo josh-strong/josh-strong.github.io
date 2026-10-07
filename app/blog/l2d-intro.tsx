@@ -420,6 +420,18 @@ export function L2DIntroPost() {
           </li>
         </ul>
       </section>
+
+      <section>
+        <h2>Conclusion</h2>
+        <p>
+          Learning to defer is ultimately about allocating responsibility, not
+          merely identifying uncertainty. This retrospective example suggests
+          that modelling both machine and expert correctness can produce more
+          useful handovers; the next step is to test such systems prospectively,
+          with richer expert populations and coherent decisions across related
+          findings.
+        </p>
+      </section>
     </div>
   );
 }
