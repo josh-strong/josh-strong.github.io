@@ -361,11 +361,12 @@ export function L2DIntroPost() {
             Each of the 17 findings is deferred independently. Related findings
             can therefore be handed over in logically inconsistent ways—for
             example, predicting a specific child finding while deferring its
-            implied parent. This is the problem we tackle in our next NeurIPS
-            paper,{" "}
+            implied parent. This is the problem we tackle in our NeurIPS paper;
+            the{" "}
             <a href="/blog/coherent-hierarchical-learning-to-defer">
-              Coherent Hierarchical Multi-Label Learning to Defer
-            </a>.
+              CHL2D blog post
+            </a>{" "}
+            explains why these incoherences arise and how we address them.
           </li>
           <li>
             R9 is a single, fixed expert observed during training. A deployed
