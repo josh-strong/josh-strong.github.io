@@ -33,7 +33,11 @@ test("server-renders Joshua Strong's academic website", async () => {
     html,
     /<title>Joshua Strong \| Trustworthy AI for Healthcare<\/title>/i,
   );
-  assert.match(html, /<h1>About me<\/h1>/i);
+  assert.match(html, /<h1>About<\/h1>/i);
+  assert.doesNotMatch(
+    html,
+    /Thesis: Model-Agnostic Meta-Learning for Few-Shot Deep Learning/i,
+  );
   assert.match(html, /Human-AI Collaboration in Healthcare: A Scoping Review/);
   assert.match(html, /https:\/\/www\.nature\.com\/articles\/s41746-026-02918-6/);
   assert.match(

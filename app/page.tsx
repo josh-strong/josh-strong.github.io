@@ -80,8 +80,6 @@ const education = [
     dates: "2019-2020",
     institution: "University College London",
     qualification: "MSc in Data Science, Distinction",
-    detail:
-      "Thesis: Model-Agnostic Meta-Learning for Few-Shot Deep Learning.",
   },
   {
     dates: "2015-2018",
@@ -114,7 +112,7 @@ export default function Home() {
 
       <main className="site-main">
         <section id="about" className="about-section">
-          <h1>About me</h1>
+          <h1>About</h1>
           <div className="bio">
             <figure className="profile-photo">
               <img
