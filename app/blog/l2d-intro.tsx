@@ -123,12 +123,11 @@ export function L2DIntroPost() {
         </p>
         <Latex display>
           {"\\begin{aligned}\n" +
-            "\\psi_{\\mathrm{OvA}}&(g_1,\\ldots,g_K,g_\\perp;\\,x,y,m) \\\\\n" +
+            "\\psi_{\\mathrm{OvA}}(g_1,\\ldots,g_K,g_\\perp;\\,x,y,m)\n" +
             "&= \\phi\\!\\left(g_y(x)\\right)\n" +
             "+ \\sum_{\\substack{y'\\in\\mathcal{Y}\\\\y'\\neq y}}\n" +
-            "  \\phi\\!\\left(-g_{y'}(x)\\right)\n" +
-            "+ \\phi\\!\\left(-g_\\perp(x)\\right) \\\\\n" +
-            "&\\quad\n" +
+            "  \\phi\\!\\left(-g_{y'}(x)\\right) \\\\\n" +
+            "&\\quad + \\phi\\!\\left(-g_\\perp(x)\\right)\n" +
             "+ \\mathbb{I}[m=y]\\!\n" +
             "  \\left[\n" +
             "    \\phi\\!\\left(g_\\perp(x)\\right)\n" +
@@ -159,8 +158,8 @@ export function L2DIntroPost() {
         <Latex display>
           {"\\begin{aligned}\n" +
             "\\mathcal{L}_{\\mathrm{binary}}\n" +
-            "={}&\\operatorname{BCELogit}\\!\\left(g_0,\\mathbb{I}[y=0]\\right) \\\\\n" +
-            "&+\\operatorname{BCELogit}\\!\\left(g_1,\\mathbb{I}[y=1]\\right) \\\\\n" +
+            "={}&\\operatorname{BCELogit}\\!\\left(g_0,\\mathbb{I}[y=0]\\right)\n" +
+            "+\\operatorname{BCELogit}\\!\\left(g_1,\\mathbb{I}[y=1]\\right) \\\\\n" +
             "&+\\operatorname{BCELogit}\\!\\left(g_\\perp,\\mathbb{I}[m=y]\\right).\n" +
             "\\end{aligned}"}
         </Latex>
