@@ -98,6 +98,8 @@ test("supports system-aware light and dark themes with responsive guardrails", a
   assert.match(css, /@media \(prefers-color-scheme:\s*dark\)/);
   assert.match(css, /--background:\s*#191919/);
   assert.match(css, /--navigation:\s*#232323/);
+  assert.match(css, /\.site-header\s*\{[\s\S]*background:\s*var\(--navigation\)/);
+  assert.doesNotMatch(css, /backdrop-filter/);
   assert.match(css, /width:\s*min\(720px,\s*calc\(100%\s*-\s*40px\)\)/);
   assert.match(css, /font-size:\s*40px/);
   assert.match(css, /\.bio\s*\{[\s\S]*grid-template-columns:\s*212px minmax\(0, 1fr\)/);
